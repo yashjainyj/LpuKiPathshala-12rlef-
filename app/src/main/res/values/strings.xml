@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Lpu ki Pathshala</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="shr_featured_label">Featured</string>
+    <string name="shr_apartment_label">Department</string>
+    <string name="shr_accessories_label">Categories</string>
+    <string name="partnerKey">BnYdS6046a71a54014b7faac88dd73fe2bdb6</string>
+    <string name="shr_shoes_label">Project</string>
+    <string name="shr_tops_label">Interview</string>
+    <string name="shr_bottoms_label">Books</string>
+    <string name="shr_dresses_label">LPU</string>
+    <string name="shr_account_label">My Account</string>
+</resources>

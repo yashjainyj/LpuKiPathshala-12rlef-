@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="B.A, LLB" android:id="@+id/ballb"></item>
+    <item android:title="B.COM, LLB" android:id="@+id/bcomllb"></item>
+    <item android:title="BBA, LLB" android:id="@+id/bballb"></item>
+    <item android:title="M.SC" android:id="@+id/msc"></item>
+</menu>

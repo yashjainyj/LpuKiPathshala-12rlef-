@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login_Fragment.First_Fragment">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="25dp"
+    android:layout_centerHorizontal="true"
+    android:layout_margin="50dp"
+    android:id="@+id/heading_lpu"
+    android:text="LPU ki Pathshala"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/lpu"
+        android:layout_below="@+id/heading_lpu"
+        android:layout_centerHorizontal="true"/>
+    <android.support.design.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/signup"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="#FFFFFF"
+        android:layout_below="@+id/heading_lpu"
+        android:backgroundTint="@color/blue"
+        android:layout_centerVertical="true"
+        app:cornerRadius="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="Sign up"
+       />
+
+    <android.support.design.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/signin"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="@color/blue"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        app:cornerRadius="20dp"
+        android:layout_below="@+id/signup"
+        android:text="Sign In"
+        />
+    <android.support.design.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/phone"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:cornerRadius="20dp"
+        android:backgroundTint="@color/blue"
+        android:text="Auto Fill with Truecaller"
+
+        android:layout_below="@+id/signin"
+        />
+
+
+
+</RelativeLayout>

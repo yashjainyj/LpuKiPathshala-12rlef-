@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item  android:id="@+id/cse" android:title="Computer Science Engineering"></item>
+    <item  android:id="@+id/ece" android:title="Electronics and Communication" ></item>
+    <item  android:id="@+id/civil" android:title="Civil Engineering" ></item>
+    <item  android:id="@+id/mech" android:title="Mechanical Engineering" ></item>
+    <item  android:id="@+id/auto" android:title="AutoMobile Engineering" ></item>
+</menu>

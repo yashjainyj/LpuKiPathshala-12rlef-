@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/image_reciver"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/a" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/image_reciver"
+        style="@style/Widget.Shrine.TextInputLayout"
+        android:id="@+id/name1"
+        android:layout_marginRight="20dp"
+        android:hint="Name">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/name"
+            android:focusableInTouchMode="false"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/name1"
+        style="@style/Widget.Shrine.TextInputLayout"
+        android:id="@+id/phonenumber1"
+        android:layout_marginRight="20dp"
+        android:hint="Number">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/phonenumber"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="false"
+            android:inputType="text"
+            android:maxLines="1" />
+    </android.support.design.widget.TextInputLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="50dp"
+                android:id="@+id/engineering"
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:paddingStart="20dp"
+                android:hint="Engineering"
+                android:focusableInTouchMode="false"
+                android:layout_gravity="center"
+                android:background="@drawable/profile"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="50dp"
+                android:id="@+id/management"
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:paddingStart="20dp"
+                android:hint="Management"
+                android:focusableInTouchMode="false"
+                android:layout_gravity="center"
+                android:background="@drawable/profile"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="50dp"
+                android:id="@+id/agriculture"
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:paddingStart="20dp"
+                android:hint="Agriculture"
+                android:focusableInTouchMode="false"
+                android:layout_gravity="center"
+                android:background="@drawable/profile"/>
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="50dp"
+                android:id="@+id/hotel"
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:paddingStart="20dp"
+                android:hint="Hotel Management and Tourism"
+                android:focusableInTouchMode="false"
+                android:layout_gravity="center"
+                android:background="@drawable/profile"/>
+
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="50dp"
+                android:id="@+id/biotechnology"
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:paddingStart="20dp"
+                android:hint="Biotechnology"
+                android:focusableInTouchMode="false"
+                android:layout_gravity="center"
+                android:background="@drawable/profile"/>
+
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="50dp"
+                android:id="@+id/law"
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:paddingStart="20dp"
+                android:hint="Law"
+                android:focusableInTouchMode="false"
+                android:layout_gravity="center"
+                android:background="@drawable/profile"/>
+
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="50dp"
+                android:id="@+id/medicalscience"
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:paddingStart="20dp"
+                android:hint="Medical Science"
+                android:focusableInTouchMode="false"
+                android:layout_gravity="center"
+                android:background="@drawable/profile"/>
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="50dp"
+                android:id="@+id/commerce"
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:paddingStart="20dp"
+                android:hint="Commerce"
+                android:focusableInTouchMode="false"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"
+                android:background="@drawable/profile"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="50dp"
+                android:id="@+id/other"
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:paddingStart="20dp"
+                android:hint="Other"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"
+                android:background="@drawable/profile"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>

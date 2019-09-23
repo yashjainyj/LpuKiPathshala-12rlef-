@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "39037336038",
+    "firebase_url": "https://lpukipathshala.firebaseio.com",
+    "project_id": "lpukipathshala",
+    "storage_bucket": "lpukipathshala.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39037336038:android:5b5c0b2e137c8ae5",
+        "android_client_info": {
+          "package_name": "com.example.lpukipathshala"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39037336038-li4ek76vac7mp5pq8a0k0b1t4o3fak94.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lpukipathshala",
+            "certificate_hash": "b4c162398177b3e84aed626ead377b05f91cc6c2"
+          }
+        },
+        {
+          "client_id": "39037336038-u4ubobi77rakv5ql98b6ns9frjvujc6f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lpukipathshala",
+            "certificate_hash": "75cb11ddc09a129e7ec906b19c44915a3772929f"
+          }
+        },
+        {
+          "client_id": "39037336038-qe5edu0at2gd0oqt4p8v5mo8ag9qig25.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbxuCpD0KZi1rvwwP255TK6oOPB5yCadg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "39037336038-qe5edu0at2gd0oqt4p8v5mo8ag9qig25.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

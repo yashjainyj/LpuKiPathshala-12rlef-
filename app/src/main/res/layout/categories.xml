@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/app_bar"
+        style="@style/Widget.Shrine.Toolbar"
+        app:title="Categories"
+        app:navigationIcon="@drawable/back"
+        ></android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/hr"
+        android:layout_below="@+id/app_bar"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="232dp"
+            android:scaleType="fitXY"
+            android:tint="#70000000"
+            android:id="@+id/hm"
+            android:src="@drawable/homebackground"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-150dp"
+            android:layout_marginLeft="50dp"
+            android:textSize="20dp"
+            android:textColor="#fff"
+            android:layout_marginRight="50dp"
+            android:textAlignment="center"
+            android:layout_below="@+id/hm"
+            android:text="Million of Products in Many Categorty"
+            />
+
+    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/hr"
+        android:layout_marginTop="-50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/recycler_view"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+</RelativeLayout>

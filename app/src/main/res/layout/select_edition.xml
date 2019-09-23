@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="50dp"
+            android:id="@+id/edition1"
+            android:singleLine="true"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:hint="Edition 1"
+            android:focusableInTouchMode="false"
+            android:layout_gravity="center"
+            android:background="@drawable/profile"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="50dp"
+            android:id="@+id/edition2"
+            android:singleLine="true"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:hint="Edition 2"
+            android:focusableInTouchMode="false"
+            android:layout_gravity="center"
+            android:background="@drawable/profile"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="50dp"
+            android:id="@+id/edition3"
+            android:singleLine="true"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:hint="Edition 3"
+            android:focusableInTouchMode="false"
+            android:layout_gravity="center"
+            android:background="@drawable/profile"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="50dp"
+            android:id="@+id/edition4"
+            android:singleLine="true"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:hint="Edition 4"
+            android:focusableInTouchMode="false"
+            android:layout_gravity="center"
+            android:background="@drawable/profile"/>
+
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="50dp"
+            android:id="@+id/edition5"
+            android:singleLine="true"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:hint="Edition 5"
+            android:focusableInTouchMode="false"
+            android:layout_gravity="center"
+            android:background="@drawable/profile"/>
+
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="50dp"
+            android:id="@+id/edition6"
+            android:singleLine="true"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:hint="Edition 6"
+            android:focusableInTouchMode="false"
+            android:layout_gravity="center"
+            android:background="@drawable/profile"/>
+
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="50dp"
+            android:id="@+id/edition7"
+            android:singleLine="true"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:hint="Edition 7"
+            android:focusableInTouchMode="false"
+            android:layout_gravity="center"
+            android:background="@drawable/profile"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="50dp"
+            android:id="@+id/edition8"
+            android:singleLine="true"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:hint="Edition 8"
+            android:focusableInTouchMode="false"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/profile"/>
+    </LinearLayout>
+
+</ScrollView>
+
+
+
+
+</LinearLayout>

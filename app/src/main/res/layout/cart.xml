@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#353232"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/app_bar"
+        style="@style/Widget.Shrine.Toolbar"
+        app:title="Chat"
+        app:navigationIcon="@drawable/back"
+        ></android.support.v7.widget.Toolbar>
+
+<android.support.v7.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_below="@+id/app_bar"
+    android:id="@+id/recycler_view"
+android:layout_above="@+id/answer"
+
+    android:layout_marginBottom="10dp"
+    android:layout_height="match_parent">
+
+</android.support.v7.widget.RecyclerView>
+
+    <!---->
+    <!---->
+    <!--<TableRow-->
+        <!--android:id="@+id/hr"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:layout_below="@+id/tot"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:background="#444"></TableRow>-->
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/answer"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_marginRight="65dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="50dp"
+            android:id="@+id/other"
+            android:layout_marginTop="10dp"
+            android:paddingStart="20dp"
+            android:inputType="textCapSentences|textMultiLine"
+            android:isScrollContainer="true"
+            android:singleLine="false"
+            android:scrollbars="vertical"
+            android:overScrollMode="always"
+            android:scrollbarStyle="insideInset"
+            android:maxLines="5"
+            android:hint="Message"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/edit_text_round"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/send"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_send_black_24dp"
+            android:layout_marginTop="7dp"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

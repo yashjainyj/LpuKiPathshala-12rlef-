@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/app_bar"
+        style="@style/Widget.Shrine.Toolbar"
+        app:title="@string/app_name"
+        app:navigationIcon="@drawable/back"
+        ></android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:id="@+id/s"
+        android:layout_below="@+id/app_bar"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="232dp"
+                android:scaleType="fitXY"
+                android:id="@+id/product_image"
+                android:src="@drawable/a" />
+
+                <android.support.design.card.MaterialCardView
+                    android:backgroundTint="@color/colorControlActivated"
+                    android:layout_below="@+id/product_image"
+                    android:backgroundTintMode="src_over"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:id="@+id/de"
+                    android:layout_marginTop="-50dp"
+                    android:layout_marginBottom="0dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Product Name"
+                        android:textColor="#000"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="90dp"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/productname"
+                        android:textSize="20dp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Author Name"
+                        android:id="@+id/authorname"
+                        android:layout_below="@+id/productname"
+                        android:textColor="#000"
+                        android:textSize="15dp"
+                        android:layout_marginRight="90dp"
+                        android:layout_marginLeft="20dp"
+                        />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="25dp"
+                            android:textColor="#000"
+                            android:id="@+id/product_price"
+                            android:text="Rs.410"
+                            android:layout_marginTop="15dp"
+                            android:layout_below="@+id/authorname"
+                            android:layout_marginLeft="20dp"/>
+
+
+                    </RelativeLayout>
+
+                </android.support.design.card.MaterialCardView>
+            <!--<android.support.design.widget.FloatingActionButton-->
+                <!--android:id="@+id/favourite"-->
+                <!--android:layout_width="match_parent"-->
+                <!--app:elevation="0dp"-->
+                <!--android:elevation="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--app:backgroundTint="@android:color/transparent"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_marginRight="20dp"-->
+                <!--android:src="@drawable/like1" />-->
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/favourite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="150dp"
+                android:src="@drawable/like1"
+                android:text="Add to Cart" />
+            <TableRow
+               android:layout_below="@+id/de"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#444"></TableRow>
+            <android.support.design.card.MaterialCardView
+                android:layout_below="@+id/de"
+                android:backgroundTintMode="src_atop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+               <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:text="Description"
+                       android:layout_marginTop="10dp"
+                       android:layout_marginLeft="45dp"
+                       android:textSize="20dp"
+                       android:textColor="#000"
+                       android:id="@+id/d"
+                       />
+                   <TableRow
+                       android:id="@+id/hr"
+                       android:layout_width="match_parent"
+                       android:layout_height="1dp"
+                       android:layout_marginTop="50dp"
+                       android:background="#444"></TableRow>
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:src="@drawable/info"
+                       android:layout_marginTop="13dp"
+                       android:layout_marginLeft="10dp"/>
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:text=""
+                       android:id="@+id/description"
+                        android:layout_below="@+id/hr"
+                       android:layout_marginTop="20dp"
+                       android:layout_marginLeft="45dp"
+                       android:layout_marginRight="40dp"
+                       android:textSize="18dp"
+                       />
+                   <TextView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:text=""
+                       android:textColor="#000000"
+                       android:id="@+id/details"
+                       android:layout_below="@+id/description"
+                       android:layout_marginTop="20dp"
+                       android:layout_marginLeft="45dp"
+                       android:layout_marginRight="40dp"
+                       android:textSize="18dp"
+                       />
+                   <TableRow
+
+                       android:layout_width="match_parent"
+                       android:layout_height="1dp"
+                       android:layout_marginTop="50dp"
+                       android:layout_below="@+id/description"
+                       android:background="#444"></TableRow>
+               </RelativeLayout>
+            </android.support.design.card.MaterialCardView>
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
