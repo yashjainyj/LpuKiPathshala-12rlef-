@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="20dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Type"
+            android:textSize="10dp"
+            android:id="@+id/typeofque"
+            android:paddingLeft="20dp"
+            android:textColor="@color/colorPrimary"
+            >
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Questions"
+            android:id="@+id/question"
+            android:textStyle="italic"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            >
+        </TextView>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="20dp"
+        android:id="@+id/ppp"
+        android:paddingLeft="20dp"
+        android:paddingBottom="20dp"
+        >
+    <ImageView
+
+        android:id="@+id/profile_image"
+        android:src="@drawable/queuser"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:textSize="10dp"
+            android:id="@+id/username"
+            android:textStyle="normal"
+            android:textColor="@color/colorPrimary"
+            android:layout_toRightOf="@id/profile_image"
+            android:text="User name"
+            >
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/profile_image"
+            android:layout_below="@id/username"
+            android:paddingLeft="20dp"
+            android:id="@+id/dateofque"
+            android:textColor="@color/colorPrimary"
+            android:text="update date"
+            android:textSize="10dp"
+            >
+        </TextView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:id="@+id/rel1"
+        android:paddingRight="20dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/Imagetopost"
+            android:paddingLeft="10dp"
+            android:src="@drawable/ic_local_post_office_black_24dp"
+            >
+        </ImageView>
+        <TextView
+            android:id="@+id/Answers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Answers"
+            android:textColor="@color/colorPrimary"
+            android:layout_below="@id/Imagetopost"
+            android:textSize="15dp"></TextView>
+
+        <Button
+            android:id="@+id/moresnswers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_below="@id/Answers"
+            android:text="More Answers"></Button>
+    </RelativeLayout>
+
+
+</LinearLayout>

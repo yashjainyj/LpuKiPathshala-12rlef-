@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/app_bar"
+        style="@style/Widget.Shrine.Toolbar"
+        app:title="Answers Upload"
+        ></android.support.v7.widget.Toolbar>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/app_bar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:id="@+id/Imageofanswer"
+        android:layout_margin="15dp"
+        android:paddingVertical="5dp"
+        android:paddingTop="5dp"
+        android:src="@drawable/avatar"
+        >
+    </ImageView>
+        <android.support.design.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ansimgupload"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="@color/blue"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            app:cornerRadius="20dp"
+            android:layout_below="@+id/signup"
+            android:text="Image upload"
+            />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please Write the Answer"
+        android:textStyle="italic"
+        style="@style/CardView.Light"
+        android:textSize="25dp"
+        android:layout_below="@id/ansimgupload"
+        android:id="@+id/text3"
+        android:padding="20dp"
+        android:gravity="center"
+        >
+    </TextView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/text3"
+        android:padding="20dp"
+        android:id="@+id/sc4"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/lin4"
+            android:background="#F8F5F5"
+            android:focusable="true"
+            android:layout_below="@id/Imageofanswer"
+            >
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/answer123"
+                style="@style/Widget.Shrine.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name2"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:hint="Answer"
+                android:minHeight="20dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/ansuserque"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ansuploadbutton"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="@color/blue"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                app:cornerRadius="20dp"
+                android:layout_below="@+id/signup"
+                android:text="Upload"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
