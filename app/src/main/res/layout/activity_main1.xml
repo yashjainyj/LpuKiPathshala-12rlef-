@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="#353232"
+    >
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/app_bar"
+        style="@style/Widget.Shrine.Toolbar"
+        app:title="Q&amp;A"
+
+        ></android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_bloquery"
+            android:layout_width="match_parent"
+            android:layout_height="683dp"
+            android:layout_weight="8"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:textSize="26sp">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+
+        <android.support.design.widget.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bottomnavque"
+            android:layout_weight="0"
+            android:paddingBottom="10dp"
+            app:menu="@menu/bottomnavmenu"/>
+        >
+
+
+    </LinearLayout>
+
+
+    <!-- Navigation drawer -->
+
+
+</LinearLayout>

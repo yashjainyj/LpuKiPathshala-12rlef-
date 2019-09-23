@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#3103F4A8"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:id="@+id/Answershowimage"
+        android:padding="0dp"
+
+        android:paddingVertical="5dp"
+        android:paddingTop="5dp"
+        android:src="@drawable/a"
+        >
+    </ImageView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Answershowimage"
+        android:padding="20dp"
+        android:id="@+id/sc2"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/lin2"
+            android:focusable="true"
+
+            android:layout_below="@id/Answershowimage"
+            >
+
+
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/ansshowtext"
+                style="@style/Widget.Shrine.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name2"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:minHeight="20dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/ansshowtext1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:focusableInTouchMode="false"
+                    android:cursorVisible="false"
+                    />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
