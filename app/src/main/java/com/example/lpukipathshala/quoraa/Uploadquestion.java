@@ -86,7 +86,7 @@ public class Uploadquestion extends AppCompatActivity {
                         public void onSuccess(DocumentReference documentReference) {
                             //Toast.makeText(Uploadquestion.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
 
-                            StorageReference store = storageReference.child("images/questions"+documentReference.getId()+".jpg");
+                            StorageReference store = storageReference.child("images/questions/"+documentReference.getId()+".jpg");
                             store.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
