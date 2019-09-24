@@ -30,9 +30,9 @@ import android.widget.Toast;
 import com.example.lpukipathshala.Add_Product.AddBook;
 import com.example.lpukipathshala.Category.Category_Main;
 import com.example.lpukipathshala.DataModels.Add_Book_Model;
-import com.example.lpukipathshala.MainActivity;
 import com.example.lpukipathshala.Myaccount.AccountDetails;
 import com.example.lpukipathshala.R;
+import com.example.lpukipathshala.quoraa.MainActivity;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -57,7 +57,7 @@ public class ProductGridFragment extends Fragment {
             super.onCreate(savedInstanceState);
             setHasOptionsMenu(true);
         }
-        MaterialButton myaccount,category;
+        MaterialButton myaccount,category,Doubts;
         FirebaseAuth mAuth;
         FloatingActionMenu floatingActionMenu;
         FloatingActionButton addBook,addEqui;
@@ -124,6 +124,18 @@ public class ProductGridFragment extends Fragment {
                 startActivity(intent);
                 getActivity().finish();
             });
+
+            Doubts = view.findViewById(R.id.doubts);
+            Doubts.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), MainActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+            });
+
+
         }
 
 
