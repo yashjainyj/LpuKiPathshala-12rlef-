@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Lpu ki Pathshala</string>
     <string name="title_activity_home">HomeActivity</string>
-    <string name="shr_featured_label">Featured</string>
+    <string name="shr_featured_label">Doubts</string>
     <string name="shr_apartment_label">Department</string>
     <string name="shr_accessories_label">Categories</string>
     <string name="partnerKey">BnYdS6046a71a54014b7faac88dd73fe2bdb6</string>

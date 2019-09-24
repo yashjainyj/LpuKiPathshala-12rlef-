@@ -32,6 +32,10 @@
         <activity android:name=".Cart.Chat_Dsiplay"></activity>
         <activity android:name=".Myaccount.OurProduct.Product_Sell" android:screenOrientation="portrait"></activity>
         <activity android:name=".Category.Category_Main"></activity>
+        <activity android:name=".quoraa.MainActivity"></activity>
+        <activity android:name=".quoraa.answercmainclass"></activity>
+        <activity android:name=".quoraa.answermoreup"></activity>
+        <activity android:name=".quoraa.Uploadquestion"></activity>
         <meta-data android:name="com.truecaller.android.sdk.PartnerKey" android:value="@string/partnerKey"/>
         <service android:name=".Notification.MyFIrebaseIdService"
             android:enabled="true"
