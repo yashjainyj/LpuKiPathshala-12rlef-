@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.lpukipathshala.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -72,10 +73,7 @@ public class Uploadquestion extends AppCompatActivity {
                 if(!mqtype.getText().toString().equals("") && !mqquestion.getText().toString().equals("")) {
                     progressDialog.setMessage("Please Wait a while...");
                     progressDialog.show();
-
-
-
-                            crefernce = firebaseFirestore.collection("Questions");
+                    crefernce = firebaseFirestore.collection("Questions");
                     Date c = Calendar.getInstance().getTime();
                     SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -86,21 +84,34 @@ public class Uploadquestion extends AppCompatActivity {
                         public void onSuccess(DocumentReference documentReference) {
                             //Toast.makeText(Uploadquestion.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
 
-                            StorageReference store = storageReference.child("images/questions/"+documentReference.getId()+".jpg");
-                            store.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    urlimage = taskSnapshot.getStorage().getDownloadUrl().toString();
-                                    mQuestionGetSet questionGetSet = new mQuestionGetSet(mAuth.getUid(), mqquestion.getText().toString(), mqtype.getText().toString(), urlimage, df.format(c));
-                                    firebaseFirestore.collection("Questions").document(documentReference.getId()).set(questionGetSet).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            progressDialog.dismiss();
-                                            Toast.makeText(Uploadquestion.this, "", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-                                }
-                            });
+                            StorageReference store = storageReference.child("images/questions/" + documentReference.getId() + ".jpg");
+                            if (uri != null) {
+                                store.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        Task<Uri> uriq = taskSnapshot.getStorage().getDownloadUrl();
+                                        while (!uriq.isComplete()) ;
+                                        urlimage = uriq.getResult().toString();
+                                        mQuestionGetSet questionGetSet = new mQuestionGetSet(mAuth.getUid(), mqquestion.getText().toString(), mqtype.getText().toString(), urlimage, df.format(c));
+                                        firebaseFirestore.collection("Questions").document(documentReference.getId()).set(questionGetSet).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                progressDialog.dismiss();
+                                                Toast.makeText(Uploadquestion.this,"uploaded", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                    }
+                                });
+                            } else {
+                                mQuestionGetSet questionGetSet = new mQuestionGetSet(mAuth.getUid(), mqquestion.getText().toString(), mqtype.getText().toString(), urlimage, df.format(c));
+                                firebaseFirestore.collection("Questions").document(documentReference.getId()).set(questionGetSet).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(Uploadquestion.this,"uploaded", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -117,8 +128,8 @@ public class Uploadquestion extends AppCompatActivity {
             }
         });
 
-    }
 
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

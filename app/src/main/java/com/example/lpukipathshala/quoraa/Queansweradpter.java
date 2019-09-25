@@ -13,7 +13,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.lpukipathshala.DataModels.UserDetails;
+import com.example.lpukipathshala.Myaccount.AccountDetails;
 import com.example.lpukipathshala.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,12 +50,36 @@ public class Queansweradpter extends RecyclerView.Adapter<Queansweradpter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+
+
+
+
+
         mQuestionGetSet dailyAlbum = mData.get(i);
+        myViewHolder.documentReference=  myViewHolder.firebaseFirestore.collection("Users").document(dailyAlbum.getUid());
+        myViewHolder.documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                UserDetails userDetails = documentSnapshot.toObject(UserDetails.class);
+                myViewHolder.qusername.setText(userDetails.getFname()+" "+userDetails.getLname());
+
+                Glide.with(mContext).load(userDetails.getPic_url()).into(myViewHolder.userimg);
+               // Glide.with(AccountDetails.this).load(userDetails.getPic_url()).into(back);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(mContext, "Error", Toast.LENGTH_SHORT).show();
+            }
+        });
         myViewHolder.qtype.setText(dailyAlbum.getQtype());
         myViewHolder.queque.setText(dailyAlbum.getQtitle());
-        if(dailyAlbum.getQimgurl().isEmpty())
+        if(dailyAlbum.getQimgurl()==null)
         {
             myViewHolder.queimg.setVisibility(View.GONE);
+        }
+        else{
+            Glide.with(mContext).load(dailyAlbum.getQimgurl()).into(myViewHolder.queimg);
         }
         //myViewHolder.quename.setText(dailyAlbum.getQueusername());
         myViewHolder.quedate.setText(dailyAlbum.getQdate());
@@ -69,8 +102,9 @@ public class Queansweradpter extends RecyclerView.Adapter<Queansweradpter.MyView
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-
-        TextView qtype,queque,quename,quedate,queans;
+        DocumentReference documentReference;
+        FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+        TextView qtype,queque,qusername,quedate,queans;
         ImageView queimg,userimg;
         ImageView buttonofrecycle;
         public MyViewHolder(@NonNull View itemView) {
@@ -78,7 +112,7 @@ public class Queansweradpter extends RecyclerView.Adapter<Queansweradpter.MyView
 
             qtype = itemView.findViewById(R.id.typeofque);
             queque = itemView.findViewById(R.id.question);
-            quename = itemView.findViewById(R.id.username);
+            qusername = itemView.findViewById(R.id.username);
             quedate = itemView.findViewById(R.id.dateofque);
             queans = itemView.findViewById(R.id.Answers);
             queimg = itemView.findViewById(R.id.Imagetopost);

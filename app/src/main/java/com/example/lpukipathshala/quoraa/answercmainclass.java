@@ -23,13 +23,16 @@ import android.widget.Toast;
 import com.example.lpukipathshala.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.text.SimpleDateFormat;
@@ -42,6 +45,8 @@ public class answercmainclass extends AppCompatActivity {
 
     RecyclerView recyclerViewans;
     TextView answertext,ans;
+    Uri uri;
+    String urlimage;
     ProgressDialog progressDialog;
     ImageButton buttontouploadimage;
    FloatingActionButton answertouploaddata;
@@ -60,6 +65,7 @@ public class answercmainclass extends AppCompatActivity {
 
         Intent intent = getIntent();
       q_id= intent.getStringExtra("q_id");
+      storageReference = FirebaseStorage.getInstance().getReference();
      //   Toast.makeText(this, q_id, Toast.LENGTH_SHORT).show();
 //
 //        list1 = new ArrayList<>();
@@ -102,13 +108,41 @@ public class answercmainclass extends AppCompatActivity {
                     //Date c = Calendar.getInstance().getTime();
                     //SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
                     mAnswerGetSet answerGetSet = new mAnswerGetSet(firebaseAuth.getUid(), q_id, answertext.getText().toString(), "");
-
-
                     collectionReference.add(answerGetSet).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             //Toast.makeText(answercmainclass.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
                             getData();
+                            StorageReference store = storageReference.child("images/answers/" + documentReference.getId() + ".jpg");
+                            if (uri != null) {
+                                store.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        Task<Uri> uriq = taskSnapshot.getStorage().getDownloadUrl();
+                                        while (!uriq.isComplete()) ;
+                                        urlimage = uriq.getResult().toString();
+                                        mAnswerGetSet answerGetSet = new mAnswerGetSet(firebaseAuth.getUid(), q_id, answertext.getText().toString(), urlimage);
+                                        firebaseFirestore.collection("Answers").document(documentReference.getId()).set(answerGetSet).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                progressDialog.dismiss();
+                                                Toast.makeText(answercmainclass.this,"uploaded", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                    }
+                                });
+                            } else {
+                                mAnswerGetSet answerGetSet1 = new mAnswerGetSet(firebaseAuth.getUid(), q_id, answertext.getText().toString(), urlimage);
+                                firebaseFirestore.collection("Answers").document(documentReference.getId()).set(answerGetSet1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(answercmainclass.this, urlimage, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(answercmainclass.this,"uploaded", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+
                             progressDialog.dismiss();
                         }
 
@@ -161,9 +195,8 @@ public class answercmainclass extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         CropImage.ActivityResult result = CropImage.getActivityResult(data);
         if (resultCode == RESULT_OK){
-            Uri uri = result.getUri();
-
-            //buttontouploadimage.setImageURI(uri);
+            uri = result.getUri();
+            buttontouploadimage.setImageURI(uri);
         }
     }
 

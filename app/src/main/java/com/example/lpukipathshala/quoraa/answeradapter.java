@@ -14,6 +14,7 @@ import android.widget.ScrollView;
 import android.widget.Scroller;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.lpukipathshala.R;
 
 import java.util.ArrayList;
@@ -44,6 +45,13 @@ public class answeradapter extends RecyclerView.Adapter<answeradapter.MyViewHold
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         mAnswerGetSet dailyAlbum = mData.get(i);
         myViewHolder.answertext.setText(dailyAlbum.getaAnswer());
+        if(dailyAlbum.getAimgurl()==null)
+        {
+            myViewHolder.answerimg.setVisibility(View.GONE);
+        }
+        else{
+            Glide.with(mContext).load(dailyAlbum.getAimgurl()).into(myViewHolder.answerimg);
+        }
        // myViewHolder.answerimg.setImageResource(dailyAlbum.getImgurl());
     }
 

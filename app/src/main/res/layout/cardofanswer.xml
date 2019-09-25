@@ -27,6 +27,7 @@
                 android:layout_height="200dp"
                 android:id="@+id/Answershowimage"
                 android:paddingVertical="5dp"
+                android:scaleType="fitXY"
                 android:src="@drawable/a"
                 >
             </ImageView>

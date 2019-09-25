@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.lpukipathshala.HomeActivity;
 import com.example.lpukipathshala.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -71,8 +72,12 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navigation_songs:
                         Intent intent = new Intent(MainActivity.this,Uploadquestion.class);
                         startActivity(intent);
-
                         break;
+                    case R.id.navigation_artists:{
+                        Intent intent1 = new Intent(MainActivity.this, HomeActivity.class);
+                        startActivity(intent1);
+                        break;
+                    }
                 }
                 return true;
             }
