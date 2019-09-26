@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.lpukipathshala.DataModels.Add_Book_Model;
 import com.example.lpukipathshala.DataModels.ChatList;
 import com.example.lpukipathshala.DataModels.Chat_Data;
 import com.example.lpukipathshala.DataModels.UserDetails;
 import com.example.lpukipathshala.Myaccount.AccountDetails;
 import com.example.lpukipathshala.R;
+import com.example.lpukipathshala.product.ProductCardRecyclerViewAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,10 +32,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -95,24 +103,28 @@ public class Chat_Display_Adapter extends RecyclerView.Adapter<Chat_Display_Adap
        cartViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               cartViewHolder.databaseReference = FirebaseDatabase.getInstance().getReference("ChatList").child(mAuth.getUid());
-               cartViewHolder.databaseReference.addValueEventListener(new ValueEventListener() {
+               cartViewHolder.collectionReference = cartViewHolder.firebaseFirestore.collection("Users");
+               cartViewHolder.collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                    @Override
-                   public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                       String s="";
-                       for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
+                   public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                       String u_id ="";
+                       for(QueryDocumentSnapshot queryDocumentSnapshots1 : queryDocumentSnapshots)
                        {
-                           ChatList chatList = dataSnapshot1.getValue(ChatList.class);
-                           s=chatList.getId();
+                           UserDetails productEntry = queryDocumentSnapshots1.toObject(UserDetails.class);
+                           if(productEntry.getEmail().equalsIgnoreCase(chat_data.getEmail()))
+                           {
+                              u_id = queryDocumentSnapshots1.getId();
+                           }
                        }
                        Intent intent = new Intent(context,Cart.class);
-                       intent.putExtra("u_id",s);
+                       intent.putExtra("u_id",u_id);
                        context.startActivity(intent);
                    }
-
+               }).addOnFailureListener(new OnFailureListener() {
                    @Override
-                   public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                   public void onFailure(@NonNull Exception e) {
+//                       Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+//                       Log.i("msl;fdmslf", "onFailure: ----------------------------- Fail");
                    }
                });
 
@@ -129,7 +141,7 @@ public class Chat_Display_Adapter extends RecyclerView.Adapter<Chat_Display_Adap
         TextView name;
         CircleImageView imageView;
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        DocumentReference documentReference;
+        CollectionReference collectionReference;
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
         public chatViewHolder(@NonNull View itemView) {
             super(itemView);
