@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.example.lpukipathshala.Add_Product.AddBook;
 import com.example.lpukipathshala.Category.Category_Main;
+import com.example.lpukipathshala.Dashboard.Dashboard;
 import com.example.lpukipathshala.DataModels.Add_Book_Model;
 import com.example.lpukipathshala.Myaccount.AccountDetails;
 import com.example.lpukipathshala.R;
@@ -120,7 +121,7 @@ public class ProductGridFragment extends Fragment {
             });
             category = view.findViewById(R.id.categories);
             category.setOnClickListener(v -> {
-                Intent intent = new Intent(getContext(), Category_Main.class);
+                Intent intent = new Intent(getContext(), Dashboard.class);
                 startActivity(intent);
                 getActivity().finish();
             });

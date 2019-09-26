@@ -33,6 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.auth.User;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,28 +82,6 @@ public class Cart extends AppCompatActivity {
         apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
         Intent intent = getIntent();
         u_id= intent.getStringExtra("u_id");
-        if(u_id==null)
-        {
-            databaseReference = FirebaseDatabase.getInstance().getReference("ChatList").child(firebaseAuth.getUid());
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    String s="";
-                    for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
-                    {
-                        ChatList chatList = dataSnapshot1.getValue(ChatList.class);
-                        s=chatList.getId();
-                    }
-                    u_id=s;
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-        }
-//        u_ida = intent.getStringArrayListExtra("u_ida");
         my_id = firebaseAuth.getUid();
         answer = findViewById(R.id.other);
         send = findViewById(R.id.send);
@@ -147,7 +126,6 @@ public class Cart extends AppCompatActivity {
                     databaseReference1.child("id").setValue(u_id);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

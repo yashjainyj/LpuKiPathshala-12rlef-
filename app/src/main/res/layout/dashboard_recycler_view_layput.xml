@@ -1,0 +1,47 @@
+<android.support.design.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    app:cardUseCompatPadding="true"
+    android:layout_height="wrap_content"
+
+    app:cardElevation="0dp"
+    android:elevation="12dp"
+    app:cardCornerRadius="5dp"
+    app:cardPreventCornerOverlap="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+            <ImageView
+                android:id="@+id/product_image"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:src="@drawable/a"
+               android:scaleType="fitXY">
+            </ImageView>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:padding="15dp"
+            android:orientation="vertical"
+            android:layout_marginTop="-50dp"
+            android:background="#72000000"
+            android:layout_gravity="bottom"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/product_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textColor="#ffffff"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:textAppearance="?attr/textAppearanceHeadline6" />
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.design.card.MaterialCardView>

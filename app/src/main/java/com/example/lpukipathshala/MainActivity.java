@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lpukipathshala.Dashboard.Dashboard;
 import com.example.lpukipathshala.Login_Fragment.First_Fragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -70,8 +71,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void updateUI(FirebaseUser currentUser) {
         if(currentUser!=null)
         {
-            Toast.makeText(this, currentUser.getEmail(), Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+            //Toast.makeText(this, currentUser.getEmail(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, Dashboard.class);
             startActivity(intent);
         }
         else
