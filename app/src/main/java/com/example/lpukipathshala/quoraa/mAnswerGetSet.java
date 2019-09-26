@@ -10,6 +10,34 @@ public class mAnswerGetSet {
     String aAnswer;
     String aimgurl;
 
+    public String getAnsprofileimage() {
+        return ansprofileimage;
+    }
+
+    public void setAnsprofileimage(String ansprofileimage) {
+        this.ansprofileimage = ansprofileimage;
+    }
+
+    public String getAnsusername() {
+        return ansusername;
+    }
+
+    public void setAnsusername(String ansusername) {
+        this.ansusername = ansusername;
+    }
+
+    public String getAnsdate() {
+        return ansdate;
+    }
+
+    public void setAnsdate(String ansdate) {
+        this.ansdate = ansdate;
+    }
+
+    String ansprofileimage;
+    String ansusername;
+    String ansdate;
+
     public String getUid() {
         return uid;
     }
@@ -42,11 +70,22 @@ public class mAnswerGetSet {
         this.aimgurl = aimgurl;
     }
 
-    public mAnswerGetSet(String uid, String quid, String aAnswer, String aimgurl) {
+    public mAnswerGetSet(String uid, String quid, String aAnswer, String aimgurl, String ansprofileimage, String ansusername, String ansdate) {
         this.uid = uid;
         this.quid = quid;
         this.aAnswer = aAnswer;
         this.aimgurl = aimgurl;
+        this.ansprofileimage = ansprofileimage;
+        this.ansusername = ansusername;
+        this.ansdate = ansdate;
+    }
+
+    public mAnswerGetSet(String uid, String quid, String aAnswer, String aimgurl,String ansdate) {
+        this.uid = uid;
+        this.quid = quid;
+        this.aAnswer = aAnswer;
+        this.aimgurl = aimgurl;
+        this.ansdate = ansdate;
     }
 
 

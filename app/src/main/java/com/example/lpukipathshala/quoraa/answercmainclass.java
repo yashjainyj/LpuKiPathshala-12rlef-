@@ -105,9 +105,9 @@ public class answercmainclass extends AppCompatActivity {
                     progressDialog.show();
                     progressDialog.setMessage("Please wait a while.....");
                     collectionReference = firebaseFirestore.collection("Answers");
-                    //Date c = Calendar.getInstance().getTime();
-                    //SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-                    mAnswerGetSet answerGetSet = new mAnswerGetSet(firebaseAuth.getUid(), q_id, answertext.getText().toString(), "");
+                    Date c = Calendar.getInstance().getTime();
+                    SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+                    mAnswerGetSet answerGetSet = new mAnswerGetSet(firebaseAuth.getUid(), q_id, answertext.getText().toString(), "",df.format(c));
                     collectionReference.add(answerGetSet).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
@@ -121,7 +121,7 @@ public class answercmainclass extends AppCompatActivity {
                                         Task<Uri> uriq = taskSnapshot.getStorage().getDownloadUrl();
                                         while (!uriq.isComplete()) ;
                                         urlimage = uriq.getResult().toString();
-                                        mAnswerGetSet answerGetSet = new mAnswerGetSet(firebaseAuth.getUid(), q_id, answertext.getText().toString(), urlimage);
+                                        mAnswerGetSet answerGetSet = new mAnswerGetSet(firebaseAuth.getUid(), q_id, answertext.getText().toString(), urlimage,df.format(c));
                                         firebaseFirestore.collection("Answers").document(documentReference.getId()).set(answerGetSet).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
@@ -132,7 +132,7 @@ public class answercmainclass extends AppCompatActivity {
                                     }
                                 });
                             } else {
-                                mAnswerGetSet answerGetSet1 = new mAnswerGetSet(firebaseAuth.getUid(), q_id, answertext.getText().toString(), urlimage);
+                                mAnswerGetSet answerGetSet1 = new mAnswerGetSet(firebaseAuth.getUid(), q_id, answertext.getText().toString(), urlimage,df.format(c));
                                 firebaseFirestore.collection("Answers").document(documentReference.getId()).set(answerGetSet1).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
@@ -156,6 +156,9 @@ public class answercmainclass extends AppCompatActivity {
                 else {
                     Toast.makeText(answercmainclass.this, "please write the answer or select the image", Toast.LENGTH_SHORT).show();
                 }
+
+                answertext.setText("");
+                buttontouploadimage.setImageResource(R.drawable.camera);
             }
         });
 
@@ -176,7 +179,7 @@ public class answercmainclass extends AppCompatActivity {
                 {
                     mAnswerGetSet mAnswerGetSet  = queryDocumentSnapshot.toObject(com.example.lpukipathshala.quoraa.mAnswerGetSet.class);
                     //String q_id = queryDocumentSnapshot.getId();
-                    list1.add(new mAnswerGetSet(mAnswerGetSet.getUid(),mAnswerGetSet.getQuid(),mAnswerGetSet.getaAnswer(),mAnswerGetSet.getAimgurl()));
+                    list1.add(new mAnswerGetSet(mAnswerGetSet.getUid(),mAnswerGetSet.getQuid(),mAnswerGetSet.getaAnswer(),mAnswerGetSet.getAimgurl(),mAnswerGetSet.getAnsdate()));
                 }
                 answeradapter answeradapter= new answeradapter(answercmainclass.this,list1);
                 recyclerViewans.setLayoutManager(new GridLayoutManager(answercmainclass.this,1));

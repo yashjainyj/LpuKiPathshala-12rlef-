@@ -19,8 +19,57 @@
         android:layout_centerHorizontal="true">
         <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
+            android:id="@+id/ppp"
+            android:paddingLeft="20dp"
+            >
+            <ImageView
+
+                android:id="@+id/answer_profile_image"
+                android:src="@drawable/queuser"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:textSize="10dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/answer_user_name"
+                android:textStyle="normal"
+                android:textColor="#000000"
+                android:layout_toRightOf="@id/answer_profile_image"
+                android:text="User name"
+                >
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/answer_profile_image"
+                android:layout_below="@id/answer_user_name"
+                android:paddingLeft="10dp"
+                android:id="@+id/answer_dateofque"
+                android:textColor="#000000"
+                android:text="update date"
+                android:textSize="10dp"
+                >
+            </TextView>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/ppp"
+            android:paddingTop="10dp"
+            >
 
             <ImageView
                 android:layout_width="match_parent"
@@ -40,8 +89,6 @@
                     android:focusable="true"
                     android:layout_below="@id/Answershowimage"
                     >
-
-
 
 
 <ScrollView
@@ -71,6 +118,7 @@
                             android:cursorVisible="false"
                             />-->
                 </LinearLayout>
+        </RelativeLayout>
         </RelativeLayout>
     </android.support.design.card.MaterialCardView>
 </RelativeLayout>

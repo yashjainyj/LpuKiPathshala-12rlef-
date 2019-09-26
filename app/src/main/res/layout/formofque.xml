@@ -32,7 +32,7 @@
           android:id="@+id/back"
           android:tint="#70000000"
           android:scaleType="fitXY"
-          android:src="@drawable/profilepic" />
+          />
 
       <de.hdodenhof.circleimageview.CircleImageView
           android:layout_width="125dp"
