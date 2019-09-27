@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lpukipathshala.R;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -54,6 +55,7 @@ public class answercmainclass extends AppCompatActivity {
     StorageReference storageReference;
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     CollectionReference collectionReference;
+    ShimmerFrameLayout shimmerFrameLayout;
     ArrayList<mAnswerGetSet> list1;
 
     String q_id;
@@ -75,6 +77,7 @@ public class answercmainclass extends AppCompatActivity {
 //        list1.add(new com.example.lpukipathshala.quoraa.answercontent("R.drawable.imageq","Answer"));
         firebaseAuth = FirebaseAuth.getInstance();
         recyclerViewans = findViewById(R.id.answerdetails);
+        shimmerFrameLayout = findViewById(R.id.shimmer);
         answertouploaddata = findViewById(R.id.uploadanswer);
         answertext = findViewById(R.id.answer);
       //  ans = findViewById(R.id.ansshowtext1);
@@ -101,14 +104,14 @@ public class answercmainclass extends AppCompatActivity {
         answertouploaddata.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!answertext.getText().toString().equalsIgnoreCase("")  ) {
-                    String answer = answertext.getText().toString();
+                String answer = answertext.getText().toString();
+                if(!answertext.getText().toString().equals("")  ) {
                     progressDialog.show();
                     progressDialog.setMessage("Please wait a while.....");
                     collectionReference = firebaseFirestore.collection("Answers");
                     Date c = Calendar.getInstance().getTime();
                     SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-                    mAnswerGetSet answerGetSet = new mAnswerGetSet(firebaseAuth.getUid(), q_id, answertext.getText().toString(), "",df.format(c));
+                    mAnswerGetSet answerGetSet = new mAnswerGetSet(firebaseAuth.getUid(), q_id, answer, "",df.format(c));
                     collectionReference.add(answerGetSet).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
@@ -122,7 +125,7 @@ public class answercmainclass extends AppCompatActivity {
                                         Task<Uri> uriq = taskSnapshot.getStorage().getDownloadUrl();
                                         while (!uriq.isComplete()) ;
                                         urlimage = uriq.getResult().toString();
-                                        mAnswerGetSet answerGetSet = new mAnswerGetSet(firebaseAuth.getUid(), q_id, answertext.getText().toString(), urlimage,df.format(c));
+                                        mAnswerGetSet answerGetSet = new mAnswerGetSet(firebaseAuth.getUid(), q_id, answer, urlimage,df.format(c));
                                         firebaseFirestore.collection("Answers").document(documentReference.getId()).set(answerGetSet).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
@@ -170,6 +173,19 @@ public class answercmainclass extends AppCompatActivity {
         getData();
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        shimmerFrameLayout.startShimmer();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        shimmerFrameLayout.stopShimmer();
+    }
+
     public void getData(){
         collectionReference = firebaseFirestore.collection("Answers");
         collectionReference.whereEqualTo("quid",q_id).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -185,7 +201,9 @@ public class answercmainclass extends AppCompatActivity {
                 answeradapter answeradapter= new answeradapter(answercmainclass.this,list1);
                 recyclerViewans.setLayoutManager(new GridLayoutManager(answercmainclass.this,1));
                 recyclerViewans.setAdapter(answeradapter);
-
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+                recyclerViewans.setVisibility(View.VISIBLE);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
