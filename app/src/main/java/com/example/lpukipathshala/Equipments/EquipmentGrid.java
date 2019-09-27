@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.lpukipathshala.Dashboard.Dashboard;
@@ -27,6 +28,7 @@ import com.example.lpukipathshala.MyUtility;
 import com.example.lpukipathshala.Myaccount.AccountDetails;
 import com.example.lpukipathshala.R;
 import com.example.lpukipathshala.quoraa.MainActivity;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -58,6 +60,8 @@ public class EquipmentGrid extends Fragment {
     ArrayList<Add_Equipment_Model> arrayList ;
     ProgressDialog progressDialog;
     RecyclerView recyclerView;
+    ShimmerFrameLayout shimmerFrameLayout;
+    FrameLayout frameLayout;
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -69,6 +73,8 @@ public class EquipmentGrid extends Fragment {
         floatingActionMenu = view.findViewById(R.id.addProduct);
         addBook = view.findViewById(R.id.addbook);
         addEqui = view.findViewById(R.id.addequi);
+        shimmerFrameLayout = view.findViewById(R.id.shimmer);
+        frameLayout = view.findViewById(R.id.framelayout);
         addEqui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,13 +136,24 @@ public class EquipmentGrid extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        shimmerFrameLayout.startShimmer();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        shimmerFrameLayout.stopShimmer();
+    }
+
     void fetchData(View view)
     {
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         arrayList = new ArrayList<>();
-        progressDialog.setMessage("Please wait a while.....");
-        progressDialog.show();
         collectionReference = firebaseFirestore.collection("Equipments");
         collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -157,7 +174,10 @@ public class EquipmentGrid extends Fragment {
                     }
                 });
                 recyclerView.setLayoutManager(gridLayoutManager);
-                progressDialog.dismiss();
+                recyclerView.setLayoutManager(gridLayoutManager);
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -199,6 +219,10 @@ public class EquipmentGrid extends Fragment {
                 Equipment_Grid_Adapter adapter = new Equipment_Grid_Adapter(getView().getContext(),arrayList);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(gridLayoutManager);
+                recyclerView.setLayoutManager(gridLayoutManager);
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

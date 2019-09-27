@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ import com.example.lpukipathshala.MyUtility;
 import com.example.lpukipathshala.Myaccount.AccountDetails;
 import com.example.lpukipathshala.Notification.Token;
 import com.example.lpukipathshala.R;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,6 +49,8 @@ public class Product_Details extends AppCompatActivity {
     ImageView imageView;
     ProgressDialog progressDialog;
     FirebaseAuth mAuth;
+    ShimmerFrameLayout shimmerFrameLayout;
+    ScrollView scrollView;
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     CollectionReference collectionReference;
     DocumentReference documentReference ;
@@ -75,6 +79,8 @@ public class Product_Details extends AppCompatActivity {
         });
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
+        shimmerFrameLayout = findViewById(R.id.shimmer);
+        scrollView = findViewById(R.id.s);
         Intent getintent = getIntent();
         imageView=findViewById(R.id.product_image);
         b_id = getintent.getStringExtra("b_id");
@@ -98,6 +104,18 @@ public class Product_Details extends AppCompatActivity {
         author_name = findViewById(R.id.authorname);
         price = findViewById(R.id.product_price);
         details = findViewById(R.id.details);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        shimmerFrameLayout.startShimmer();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        shimmerFrameLayout.stopShimmer();
     }
 
     @Override
@@ -133,6 +151,10 @@ public class Product_Details extends AppCompatActivity {
                             s=s+"Phone      : "+userDetails.getPhone()+"\n";
                             s=s+"Location  : "+userDetails.getLocation()+"\n";
                             details.setText(s);
+
+                            shimmerFrameLayout.stopShimmer();
+                            shimmerFrameLayout.setVisibility(View.GONE);
+                            scrollView.setVisibility(View.VISIBLE);
                             updateToken(FirebaseInstanceId.getInstance().getToken());
                             // Toast.makeText(Product_Details.this, s, Toast.LENGTH_SHORT).show();
                         }

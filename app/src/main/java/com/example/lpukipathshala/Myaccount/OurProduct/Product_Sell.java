@@ -183,4 +183,13 @@ public class Product_Sell extends AppCompatActivity {
 
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(Product_Sell.this, AccountDetails.class);
+        startActivity(intent);
+        finish();
+    }
 }
+

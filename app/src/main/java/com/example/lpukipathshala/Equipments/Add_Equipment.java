@@ -68,6 +68,7 @@ public class Add_Equipment extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Add_Equipment.this, HomeActivity.class);
+                intent.putExtra("type","Equipments");
                 startActivity(intent);
                 finish();
             }

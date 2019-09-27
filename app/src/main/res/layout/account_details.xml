@@ -83,6 +83,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:src="@drawable/like"
+                       android:id="@+id/favouriteimage"
                        android:layout_alignParentLeft="true"
                        android:layout_marginStart="45dp"
                        android:layout_marginTop="15dp" />
@@ -100,7 +101,8 @@
                    <ImageView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:src="@drawable/cart"
+                       android:src="@drawable/chat"
+                       android:id="@+id/chatimage"
                        android:layout_marginTop="15dp"
                         android:layout_alignParentRight="true"
                        android:layout_marginRight="45dp"
@@ -119,6 +121,7 @@
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:src="@drawable/money"
+                      android:id="@+id/sellimage"
                       android:layout_marginTop="15dp"
                       android:layout_centerHorizontal="true"
                       android:layout_marginRight="45dp"
