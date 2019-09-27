@@ -37,7 +37,7 @@
         <activity android:name=".Equipments.Add_Equipment"></activity>
         <activity android:name=".quoraa.answermoreup"></activity>
         <activity android:name=".quoraa.Uploadquestion"></activity>
-        <activity android:name=".Dashboard.Dashboard"></activity>
+        <activity android:name=".Dashboard.Dashboard" android:screenOrientation="portrait"></activity>
         <meta-data android:name="com.truecaller.android.sdk.PartnerKey" android:value="@string/partnerKey"/>
         <service android:name=".Notification.MyFIrebaseIdService"
             android:enabled="true"

@@ -231,4 +231,12 @@ public class Chat_Dsiplay extends AppCompatActivity {
 //        });
 //    }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(Chat_Dsiplay.this, Product_Sell.class);
+        startActivity(intent);
+        finish();
+    }
 }

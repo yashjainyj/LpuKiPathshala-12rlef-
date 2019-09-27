@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.lpukipathshala.Cart.Cart;
+import com.example.lpukipathshala.Cart.Chat_Dsiplay;
 import com.example.lpukipathshala.Dashboard.Dashboard;
 import com.example.lpukipathshala.DataModels.UserDetails;
 import com.example.lpukipathshala.HomeActivity;
@@ -53,6 +54,7 @@ public class AccountDetails extends AppCompatActivity {
     private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     DocumentReference documentReference ;
     StorageReference storageReference;
+    ImageView favourite1,sell1,chatdisplay1;
     ProgressDialog progressDialog;
     private CircleImageView circleImageView;
     ScrollView scrollView;
@@ -73,15 +75,35 @@ public class AccountDetails extends AppCompatActivity {
         about = findViewById(R.id.about);
         cart = findViewById(R.id.cart);
         sell = findViewById(R.id.sell);
+        favourite1=findViewById(R.id.favouriteimage);
+        sell1 = findViewById(R.id.sellimage);
+        chatdisplay1 = findViewById(R.id.chatimage);
         circleImageView = findViewById(R.id.circleImageView);
         back = findViewById(R.id.back);
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
+        cart.setText("Chats");
         storageReference= FirebaseStorage.getInstance().getReference();
+        chatdisplay1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AccountDetails.this, Chat_Dsiplay.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AccountDetails.this, Cart.class);
+                Intent intent = new Intent(AccountDetails.this, Chat_Dsiplay.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        sell1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AccountDetails.this, Product_Sell.class);
                 startActivity(intent);
                 finish();
             }

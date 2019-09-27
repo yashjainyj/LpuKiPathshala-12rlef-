@@ -61,9 +61,9 @@ public class Sell_Adapter extends RecyclerView.Adapter<Sell_Adapter.CartViewHold
         public ImageButton delete;
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
-            product_image = itemView.findViewById(R.id.product_image);
-            product_price = itemView.findViewById(R.id.product_price);
-            product_name = itemView.findViewById(R.id.productname);
+            product_image = itemView.findViewById(R.id.product_image1);
+            product_price = itemView.findViewById(R.id.product_price1);
+            product_name = itemView.findViewById(R.id.productname1);
             delete = itemView.findViewById(R.id.delete);
         }
     }
