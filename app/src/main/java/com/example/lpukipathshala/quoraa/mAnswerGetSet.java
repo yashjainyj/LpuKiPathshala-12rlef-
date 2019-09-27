@@ -9,6 +9,9 @@ public class mAnswerGetSet {
     String quid;
     String aAnswer;
     String aimgurl;
+    String ansprofileimage;
+    String ansusername;
+    String ansdate;
 
     public String getAnsprofileimage() {
         return ansprofileimage;
@@ -34,9 +37,7 @@ public class mAnswerGetSet {
         this.ansdate = ansdate;
     }
 
-    String ansprofileimage;
-    String ansusername;
-    String ansdate;
+
 
     public String getUid() {
         return uid;

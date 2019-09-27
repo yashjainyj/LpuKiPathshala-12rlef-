@@ -101,7 +101,8 @@ public class answercmainclass extends AppCompatActivity {
         answertouploaddata.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!answertext.getText().toString().equals("") ) {
+                if(!answertext.getText().toString().equalsIgnoreCase("")  ) {
+                    String answer = answertext.getText().toString();
                     progressDialog.show();
                     progressDialog.setMessage("Please wait a while.....");
                     collectionReference = firebaseFirestore.collection("Answers");
@@ -132,12 +133,12 @@ public class answercmainclass extends AppCompatActivity {
                                     }
                                 });
                             } else {
-                                mAnswerGetSet answerGetSet1 = new mAnswerGetSet(firebaseAuth.getUid(), q_id, answertext.getText().toString(), urlimage,df.format(c));
+                                mAnswerGetSet answerGetSet1 = new mAnswerGetSet(firebaseAuth.getUid(), q_id, answer, urlimage,df.format(c));
                                 firebaseFirestore.collection("Answers").document(documentReference.getId()).set(answerGetSet1).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         progressDialog.dismiss();
-                                        Toast.makeText(answercmainclass.this, urlimage, Toast.LENGTH_SHORT).show();
+                                       // Toast.makeText(answercmainclass.this, urlimage, Toast.LENGTH_SHORT).show();
                                         Toast.makeText(answercmainclass.this,"uploaded", Toast.LENGTH_SHORT).show();
                                     }
                                 });
