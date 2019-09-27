@@ -15,17 +15,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.lpukipathshala.Cart.Cart;
+import com.example.lpukipathshala.Dashboard.Dashboard;
 import com.example.lpukipathshala.DataModels.UserDetails;
 import com.example.lpukipathshala.HomeActivity;
 import com.example.lpukipathshala.MainActivity;
 import com.example.lpukipathshala.MyUtility;
 import com.example.lpukipathshala.Myaccount.OurProduct.Product_Sell;
 import com.example.lpukipathshala.R;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,6 +55,8 @@ public class AccountDetails extends AppCompatActivity {
     StorageReference storageReference;
     ProgressDialog progressDialog;
     private CircleImageView circleImageView;
+    ScrollView scrollView;
+    ShimmerFrameLayout shimmerFrameLayout;
     ImageView back;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,8 @@ public class AccountDetails extends AppCompatActivity {
         setContentView(R.layout.account_details);
         setUpToolbar();
         floatingActionButton = findViewById(R.id.edit);
+        shimmerFrameLayout = findViewById(R.id.shimmer);
+        scrollView = findViewById(R.id.scrollview);
         name = findViewById(R.id.name);
         location = findViewById(R.id.location);
         email = findViewById(R.id.email);
@@ -87,24 +94,6 @@ public class AccountDetails extends AppCompatActivity {
                 finish();
             }
         });
-
-
-//
-
-
-//        if(MyUtility.userDetails!=null)
-//        {
-//
-//            name.setText(MyUtility.userDetails.get(0).getFname() + " " + MyUtility.userDetails.get(0).getLname());
-//            location.setText(MyUtility.userDetails.get(0).getLocation());
-//            email.setText(MyUtility.userDetails.get(0).getEmail());
-//            phone.setText(MyUtility.userDetails.get(0).getPhone());
-//            about.setText(MyUtility.userDetails.get(0).getAbout());
-//        }
-
-
-
-
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,6 +101,11 @@ public class AccountDetails extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
+
+
 
     }
 
@@ -123,24 +117,25 @@ public class AccountDetails extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AccountDetails.this, HomeActivity.class);
+                Intent intent = new Intent(AccountDetails.this, Dashboard.class);
                 startActivity(intent);
                 finish();
             }
         });
-
-//        myaccount = findViewById(R.id.myaccount);
-//        myaccount.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // FirebaseAuth.getInstance().signOut();
-////                Intent intent = new Intent(AccountDetails.this, AccountDetails.class);
-////                startActivity(intent);
-////               finish();
-//            }
-//        });
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        shimmerFrameLayout.startShimmer();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        shimmerFrameLayout.stopShimmer();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -156,6 +151,7 @@ public class AccountDetails extends AppCompatActivity {
             case R.id.logout :  FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(AccountDetails.this, MainActivity.class);
             startActivity(intent);
+            finishAffinity();
             break;
         }
         return true;
@@ -164,33 +160,8 @@ public class AccountDetails extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (!mAuth.getUid().equalsIgnoreCase(""))
+        if (mAuth.getUid()!=null)
         {
-            progressDialog.setMessage("please wait a while.....");
-             progressDialog.show();
-//            try {
-//
-//                File file = File.createTempFile("image","jpg");
-//
-//                storageReference =storageReference.child("images/user/"+mAuth.getUid()+"/"+mAuth.getUid() +".jpg");
-//                storageReference.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-//                        circleImageView.setImageBitmap(bitmap);
-//                        back.setImageBitmap(bitmap);
-//                        progressDialog.dismiss();
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//
-//                    }
-//                });
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-
             documentReference=  firebaseFirestore.collection("Users").document(mAuth.getUid());
             documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
@@ -203,7 +174,10 @@ public class AccountDetails extends AppCompatActivity {
                     about.setText(userDetails.getAbout());
                     Glide.with(AccountDetails.this).load(userDetails.getPic_url()).into(circleImageView);
                     Glide.with(AccountDetails.this).load(userDetails.getPic_url()).into(back);
-                    progressDialog.dismiss();
+
+                    shimmerFrameLayout.stopShimmer();
+                    shimmerFrameLayout.setVisibility(View.GONE);
+                    scrollView.setVisibility(View.VISIBLE);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -218,6 +192,8 @@ public class AccountDetails extends AppCompatActivity {
             startActivity(intent);
             finishAffinity();
         }
+
+
 
     }
 }

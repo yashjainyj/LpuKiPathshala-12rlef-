@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.lpukipathshala.Dashboard.Dashboard;
 import com.example.lpukipathshala.DataModels.UserDetails;
 import com.example.lpukipathshala.HomeActivity;
 import com.example.lpukipathshala.MyUtility;
@@ -139,7 +140,7 @@ public class First_Fragment extends Fragment {
                                         if (task.isSuccessful()) {
                                             // Sign in success, update UI with the si   gned-in user's information
                                             progressDialog.dismiss();
-                                            Intent intent = new Intent(getContext(),HomeActivity.class);
+                                            Intent intent = new Intent(getContext(), Dashboard.class);
                                             startActivity(intent);
                                             getActivity().finish();
 

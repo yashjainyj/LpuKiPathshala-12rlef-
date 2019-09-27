@@ -16,7 +16,16 @@
         app:navigationIcon="@drawable/back"
         ></android.support.v7.widget.Toolbar>
 
+<com.facebook.shimmer.ShimmerFrameLayout
+    android:layout_width="match_parent"
+    android:id="@+id/shimmer"
+    android:layout_height="match_parent">
+    <include layout="@layout/shimmer_account_detail"></include>
+</com.facebook.shimmer.ShimmerFrameLayout>
+
     <ScrollView
+        android:visibility="gone"
+        android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_below="@+id/app_bar"
         android:layout_height="match_parent">

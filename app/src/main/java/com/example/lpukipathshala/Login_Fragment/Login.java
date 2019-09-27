@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.lpukipathshala.Dashboard.Dashboard;
 import com.example.lpukipathshala.HomeActivity;
 import com.example.lpukipathshala.MainActivity;
 import com.example.lpukipathshala.MyUtility;
@@ -72,7 +73,7 @@ public class Login extends Fragment implements View.OnClickListener {
                         @Override
                         public void onComplete(Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Intent intent = new Intent(view.getContext(),HomeActivity.class);
+                                Intent intent = new Intent(view.getContext(), Dashboard.class);
                                 startActivity(intent);
                                 getActivity().finish();
 

@@ -20,7 +20,9 @@ import com.bumptech.glide.Glide;
 import com.example.lpukipathshala.Cart.Cart;
 import com.example.lpukipathshala.DataModels.Add_Book_Model;
 import com.example.lpukipathshala.DataModels.UserDetails;
+import com.example.lpukipathshala.Equipments.Add_Equipment_Model;
 import com.example.lpukipathshala.HomeActivity;
+import com.example.lpukipathshala.MyUtility;
 import com.example.lpukipathshala.Myaccount.AccountDetails;
 import com.example.lpukipathshala.Notification.Token;
 import com.example.lpukipathshala.R;
@@ -41,7 +43,7 @@ public class Product_Details extends AppCompatActivity {
     TextView description,product_name,author_name,price,details;
     FloatingActionButton favourite;
     boolean a = true;
-    String b_id,s="",u_id;
+    String b_id,s="",u_id,TYPE;
     ImageView imageView;
     ProgressDialog progressDialog;
     FirebaseAuth mAuth;
@@ -56,15 +58,27 @@ public class Product_Details extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> {
-            Intent intent = new Intent(Product_Details.this, HomeActivity.class);
-            startActivity(intent);
-            finish();
+            if(TYPE==null)
+            {
+                Intent intent = new Intent(Product_Details.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+            else
+            {
+                Intent intent = new Intent(Product_Details.this, HomeActivity.class);
+                intent.putExtra("type",TYPE);
+                startActivity(intent);
+                finish();
+            }
+
         });
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
         Intent getintent = getIntent();
         imageView=findViewById(R.id.product_image);
         b_id = getintent.getStringExtra("b_id");
+        TYPE = getintent.getStringExtra("type");
         favourite = findViewById(R.id.favourite);
 
         favourite.setOnClickListener(v -> {
@@ -89,53 +103,109 @@ public class Product_Details extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        collectionReference = firebaseFirestore.collection("BOOKS");
-        collectionReference.whereEqualTo("bookId",b_id).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot queryDocumentSnapshot:queryDocumentSnapshots)
-                {
-                    Add_Book_Model add_book_model= queryDocumentSnapshot.toObject(Add_Book_Model.class);
-                    product_name.setText(add_book_model.getBookName());
-                    author_name.setText(add_book_model.getAuthorName());
-                    price.setText("Rs."+add_book_model.getPrice());
-                    u_id = add_book_model.getUserId();
-                    Glide.with(Product_Details.this).load(add_book_model.getPicUrl()).into(imageView);
-                     s = add_book_model.getDescription()+"\n\n";
-                    description.setText(s);
-                  //  Toast.makeText(Product_Details.this, add_book_model.getUserId(), Toast.LENGTH_SHORT).show();
+        if(TYPE==null)
+        {
+            collectionReference = firebaseFirestore.collection("BOOKS");
+            collectionReference.whereEqualTo("bookId",b_id).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    for (QueryDocumentSnapshot queryDocumentSnapshot:queryDocumentSnapshots)
+                    {
+                        Add_Book_Model add_book_model= queryDocumentSnapshot.toObject(Add_Book_Model.class);
+                        product_name.setText(add_book_model.getBookName());
+                        author_name.setText(add_book_model.getAuthorName());
+                        price.setText("Rs."+add_book_model.getPrice());
+                        u_id = add_book_model.getUserId();
+                        Glide.with(Product_Details.this).load(add_book_model.getPicUrl()).into(imageView);
+                        s = add_book_model.getDescription()+"\n\n";
+                        description.setText(s);
+                        //  Toast.makeText(Product_Details.this, add_book_model.getUserId(), Toast.LENGTH_SHORT).show();
+                    }
+                    //Toast.makeText(Product_Details.this, u_id, Toast.LENGTH_SHORT).show();
+                    documentReference=  firebaseFirestore.collection("Users").document(u_id);
+                    documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            UserDetails userDetails = documentSnapshot.toObject(UserDetails.class);
+                            s="Seller Contact Details\n\n";
+                            s=s+"Name      : "+userDetails.getFname() + " " + userDetails.getLname()+"\n";
+                            s=s+"Email       : "+userDetails.getEmail()+"\n";
+                            s=s+"Phone      : "+userDetails.getPhone()+"\n";
+                            s=s+"Location  : "+userDetails.getLocation()+"\n";
+                            details.setText(s);
+                            updateToken(FirebaseInstanceId.getInstance().getToken());
+                            // Toast.makeText(Product_Details.this, s, Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(Product_Details.this, "Error", Toast.LENGTH_SHORT).show();
+                            Log.i("sadad", "onFailure: ---------------------------------------------------------------");
+                        }
+                    });
+
+
                 }
-                //Toast.makeText(Product_Details.this, u_id, Toast.LENGTH_SHORT).show();
-                documentReference=  firebaseFirestore.collection("Users").document(u_id);
-                documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        UserDetails userDetails = documentSnapshot.toObject(UserDetails.class);
-                        s="Seller Contact Details\n\n";
-                        s=s+"Name      : "+userDetails.getFname() + " " + userDetails.getLname()+"\n";
-                        s=s+"Email       : "+userDetails.getEmail()+"\n";
-                        s=s+"Phone      : "+userDetails.getPhone()+"\n";
-                        s=s+"Location  : "+userDetails.getLocation()+"\n";
-                        details.setText(s);
-                    updateToken(FirebaseInstanceId.getInstance().getToken());
-                       // Toast.makeText(Product_Details.this, s, Toast.LENGTH_SHORT).show();
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                }
+            });
+
+        }
+        else if (TYPE.equalsIgnoreCase(MyUtility.TYPE))
+        {
+            //Toast.makeText(this, b_id, Toast.LENGTH_SHORT).show();
+            collectionReference = firebaseFirestore.collection("Equipments");
+            collectionReference.whereEqualTo("equipmentId",b_id).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    for (QueryDocumentSnapshot queryDocumentSnapshot:queryDocumentSnapshots)
+                    {
+                        Add_Equipment_Model add_book_model= queryDocumentSnapshot.toObject(Add_Equipment_Model.class);
+                        product_name.setText(add_book_model.getEquipmentName());
+                        author_name.setVisibility(View.GONE);
+                        price.setText("Rs."+add_book_model.getPrice());
+                        u_id = add_book_model.getUserId();
+                        Glide.with(Product_Details.this).load(add_book_model.getPicUrl()).into(imageView);
+                        s = add_book_model.getDescription()+"\n\n";
+                        description.setText(s);
+                        //  Toast.makeText(Product_Details.this, add_book_model.getUserId(), Toast.LENGTH_SHORT).show();
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Product_Details.this, "Error", Toast.LENGTH_SHORT).show();
-                        Log.i("sadad", "onFailure: ---------------------------------------------------------------");
-                    }
-                });
+                    //Toast.makeText(Product_Details.this, u_id, Toast.LENGTH_SHORT).show();
+                    documentReference=  firebaseFirestore.collection("Users").document(u_id);
+                    documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            UserDetails userDetails = documentSnapshot.toObject(UserDetails.class);
+                            s="Seller Contact Details\n\n";
+                            s=s+"Name      : "+userDetails.getFname() + " " + userDetails.getLname()+"\n";
+                            s=s+"Email       : "+userDetails.getEmail()+"\n";
+                            s=s+"Phone      : "+userDetails.getPhone()+"\n";
+                            s=s+"Location  : "+userDetails.getLocation()+"\n";
+                            details.setText(s);
+                            updateToken(FirebaseInstanceId.getInstance().getToken());
+                            // Toast.makeText(Product_Details.this, s, Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(Product_Details.this, "Error", Toast.LENGTH_SHORT).show();
+                            Log.i("sadad", "onFailure: ---------------------------------------------------------------");
+                        }
+                    });
 
 
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
 
-            }
-        });
+                }
+            });
+        }
+
     }
 
 

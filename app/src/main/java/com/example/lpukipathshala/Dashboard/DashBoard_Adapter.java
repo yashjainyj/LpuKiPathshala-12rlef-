@@ -53,6 +53,7 @@ public class DashBoard_Adapter extends RecyclerView.Adapter<DashBoard_Adapter.Da
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, HomeActivity.class);
+                        intent.putExtra("type","Equipment");
                         context.startActivity(intent);
                     }
                 });

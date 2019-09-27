@@ -98,7 +98,7 @@
                             android:maxLines="1" />
                     </android.support.design.widget.TextInputLayout>
 
-                    <android.support.design.widget.TextInputLayout
+                        <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -124,6 +124,7 @@
                         android:src="@drawable/ic_keyboard_arrow_down_black_24dp"
                         android:layout_below="@+id/bauthor1"
                         android:layout_marginTop="30dp"
+                        android:id="@+id/drop1"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="40dp"
                         />

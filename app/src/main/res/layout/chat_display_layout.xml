@@ -11,14 +11,14 @@
         android:layout_height="wrap_content">
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="60dp"
-        android:src="@drawable/a"
+        android:background="@color/shimmer"
         android:id="@+id/profile"
         android:layout_height="60dp" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:textSize="20sp"
-        android:text="Name"
+       android:background="@color/shimmer"
         android:id="@+id/name"
         android:textColor="#ffffff"
         android:layout_marginTop="10dp"

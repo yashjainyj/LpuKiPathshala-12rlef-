@@ -26,6 +26,7 @@ import com.example.lpukipathshala.Notification.Client;
 import com.example.lpukipathshala.Notification.Token;
 import com.example.lpukipathshala.R;
 import com.example.lpukipathshala.product.Product_Details;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,6 +52,7 @@ public class Chat_Dsiplay extends AppCompatActivity {
     String b_id;
     DatabaseReference databaseReference;
     FirebaseAuth mAuth;
+    ShimmerFrameLayout shimmerFrameLayout;
     Set<String> set = new HashSet();
     ProgressDialog progressDialog;
     FirebaseFirestore firebaseFirestore;
@@ -75,6 +77,7 @@ public class Chat_Dsiplay extends AppCompatActivity {
                 finish();
             }
         });
+        shimmerFrameLayout = findViewById(R.id.shimmer);
         firebaseFirestore = FirebaseFirestore.getInstance();
         collectionReference = FirebaseFirestore.getInstance().collection("User");
         textView = findViewById(R.id.no);
@@ -138,8 +141,10 @@ public class Chat_Dsiplay extends AppCompatActivity {
                 }
                 if(userlist.isEmpty())
                 {
-                    progressDialog.dismiss();
+                   shimmerFrameLayout.stopShimmer();
+                   shimmerFrameLayout.setVisibility(View.GONE);
                     textView.setVisibility(View.VISIBLE);
+                    textView.setText("No Message, Yet \n No messages in your inbox yet!");
                 }
                 else {
                     textView.setVisibility(View.GONE);
@@ -148,13 +153,25 @@ public class Chat_Dsiplay extends AppCompatActivity {
                     recyclerView.setLayoutManager(layoutManager);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setHasFixedSize(true);
-                    progressDialog.dismiss();
-
+                    shimmerFrameLayout.stopShimmer();
+                    shimmerFrameLayout.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
                 }
             }
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        shimmerFrameLayout.startShimmer();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        shimmerFrameLayout.stopShimmer();
+    }
 
     private  void updateToken(String token)
 {

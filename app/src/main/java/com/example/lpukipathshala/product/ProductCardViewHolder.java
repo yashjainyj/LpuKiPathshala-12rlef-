@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lpukipathshala.MyUtility;
 import com.example.lpukipathshala.R;
 
 public class ProductCardViewHolder extends RecyclerView.ViewHolder {
@@ -17,6 +18,7 @@ public class ProductCardViewHolder extends RecyclerView.ViewHolder {
     public ImageView productImage;
     public String b_id;
     public String u_id;
+    public String TYPE;
 
     public ProductCardViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -26,9 +28,19 @@ public class ProductCardViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(itemView.getContext(),Product_Details.class);
-                intent.putExtra("b_id",b_id);
-                itemView.getContext().startActivity(intent);
+                if(TYPE==null)
+                {
+                    Intent intent = new Intent(itemView.getContext(),Product_Details.class);
+                    intent.putExtra("b_id",b_id);
+                    itemView.getContext().startActivity(intent);
+                }
+                else if(TYPE.equalsIgnoreCase(MyUtility.TYPE))
+                {
+                    Intent intent = new Intent(itemView.getContext(),Product_Details.class);
+                    intent.putExtra("b_id",b_id);
+                    intent.putExtra("type",TYPE);
+                    itemView.getContext().startActivity(intent);
+                }
             }
         });
     }

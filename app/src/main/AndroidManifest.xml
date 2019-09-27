@@ -34,6 +34,7 @@
         <activity android:name=".Category.Category_Main"></activity>
         <activity android:name=".quoraa.MainActivity"></activity>
         <activity android:name=".quoraa.answercmainclass"></activity>
+        <activity android:name=".Equipments.Add_Equipment"></activity>
         <activity android:name=".quoraa.answermoreup"></activity>
         <activity android:name=".quoraa.Uploadquestion"></activity>
         <activity android:name=".Dashboard.Dashboard"></activity>

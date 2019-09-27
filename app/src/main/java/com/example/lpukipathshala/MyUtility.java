@@ -10,6 +10,7 @@ public class MyUtility {
     public static final String  BOOKS_COLLECTION="BOOKS";
     public static final String  PROJECT_COLLECTION="PROJECT";
     public static final String BRANCH[]= {"Engineering","Management","Agriculture","Hotel Management and Tourism","Biotechnology","Law","Medical Science","Commerce"};
+    public static final String TYPE = "Equipments";
 
 
 

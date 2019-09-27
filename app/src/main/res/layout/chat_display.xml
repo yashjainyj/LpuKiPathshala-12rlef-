@@ -13,7 +13,28 @@
         app:title="Chat"
         app:navigationIcon="@drawable/back"
         ></android.support.v7.widget.Toolbar>
+<com.facebook.shimmer.ShimmerFrameLayout
+    android:layout_width="match_parent"
+    android:id="@+id/shimmer"
+    android:layout_below="@+id/app_bar"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
 
+        <include layout="@layout/chat_display_layout"></include>
+        <include layout="@layout/chat_display_layout"></include>
+        <include layout="@layout/chat_display_layout"></include>
+        <include layout="@layout/chat_display_layout"></include>
+        <include layout="@layout/chat_display_layout"></include>
+        <include layout="@layout/chat_display_layout"></include>
+
+
+
+    </LinearLayout>
+
+</com.facebook.shimmer.ShimmerFrameLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,6 +43,7 @@
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:id="@+id/recycler_view"
             android:layout_height="match_parent">
         </android.support.v7.widget.RecyclerView>
@@ -35,10 +57,10 @@
         android:id="@+id/no"
         android:padding="20sp"
         android:lines="2"
+        android:visibility="gone"
         android:textAlignment="center"
         android:textSize="25sp"
-        android:text="No Message, Yet \n
-No messages in your inbox yet!"
+        android:background="@color/shimmer"
         android:textColor="#ffffff"
         />
 

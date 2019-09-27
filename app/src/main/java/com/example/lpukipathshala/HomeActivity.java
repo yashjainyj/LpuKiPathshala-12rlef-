@@ -13,6 +13,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
 
 
+import com.example.lpukipathshala.Equipments.EquipmentGrid;
 import com.example.lpukipathshala.Login_Fragment.Login;
 import com.example.lpukipathshala.product.ProductGridFragment;
 import com.google.firebase.FirebaseApp;
@@ -29,11 +30,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationHost{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         toolbar = findViewById(R.id.app_bar);
-
         setSupportActionBar(toolbar);
+        Intent intent = getIntent();
+        String Type =intent.getStringExtra("type");
         if (savedInstanceState==null)
         {
+            if (Type==null)
             getSupportFragmentManager().beginTransaction().add(R.id.Frame,new ProductGridFragment()).commit();
+            else
+                getSupportFragmentManager().beginTransaction().add(R.id.Frame,new EquipmentGrid()).commit();
         }
     }
     public void navigateTo(Fragment fragment, boolean addToBackstack) {

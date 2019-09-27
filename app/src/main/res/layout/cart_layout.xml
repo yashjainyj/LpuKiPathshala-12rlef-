@@ -4,14 +4,13 @@
     android:layout_height="wrap_content">
 
 
-
     <android.support.design.card.MaterialCardView
         android:layout_below="@+id/app_bar"
         android:background="@drawable/profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="20sp"
         android:id="@+id/cartdetail"
         android:layout_centerHorizontal="true">
 
@@ -21,7 +20,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Product Name"
+                android:background="@color/shimmer"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="110dp"
@@ -32,8 +31,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Rs.410"
                 android:textColor="#000"
+                android:background="@color/shimmer"
                 android:id="@+id/product_price"
                 android:layout_below="@+id/productname"
                 android:layout_marginLeft="20dp"
@@ -43,7 +42,7 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="150dp"
-                android:src="@drawable/a"
+                android:background="@color/shimmer"
                 android:id="@+id/product_image"
                 android:layout_alignParentRight="true"
                 android:scaleType="center"
@@ -51,9 +50,8 @@
 
             <ImageButton
                 android:layout_width="wrap_content"
-                android:background="@null"
+                android:background="@color/shimmer"
                 android:layout_height="wrap_content"
-                android:src="@drawable/delete"
                 android:id="@+id/delete"
                 android:layout_below="@id/product_price"
                 android:layout_marginLeft="20dp"

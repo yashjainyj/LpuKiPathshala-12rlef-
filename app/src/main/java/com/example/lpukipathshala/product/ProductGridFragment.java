@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.lpukipathshala.Add_Product.AddBook;
@@ -34,6 +35,7 @@ import com.example.lpukipathshala.DataModels.Add_Book_Model;
 import com.example.lpukipathshala.Myaccount.AccountDetails;
 import com.example.lpukipathshala.R;
 import com.example.lpukipathshala.quoraa.MainActivity;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -58,16 +60,18 @@ public class ProductGridFragment extends Fragment {
             super.onCreate(savedInstanceState);
             setHasOptionsMenu(true);
         }
-        MaterialButton myaccount,category,Doubts;
+        MaterialButton myaccount,category,Doubts,Dashboard;
         FirebaseAuth mAuth;
         FloatingActionMenu floatingActionMenu;
         FloatingActionButton addBook,addEqui;
-    private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-    private CollectionReference collectionReference;
-    StorageReference storageReference;
-    ArrayList<Add_Book_Model> arrayList ;
-            ProgressDialog progressDialog;
-    RecyclerView recyclerView;
+        private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+        private CollectionReference collectionReference;
+        StorageReference storageReference;
+        ArrayList<Add_Book_Model> arrayList ;
+        ProgressDialog progressDialog;
+        ShimmerFrameLayout shimmerFrameLayout;
+        FrameLayout frameLayout;
+        RecyclerView recyclerView;
         @Override
         public View onCreateView(
                 @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -77,6 +81,8 @@ public class ProductGridFragment extends Fragment {
             storageReference= FirebaseStorage.getInstance().getReference();
             setUpToolbar(view);
             floatingActionMenu = view.findViewById(R.id.addProduct);
+            shimmerFrameLayout =view.findViewById(R.id.shimmer);
+            frameLayout = view.findViewById(R.id.framelayout);
             addBook = view.findViewById(R.id.addbook);
             addEqui = view.findViewById(R.id.addequi);
             addBook.setOnClickListener(new View.OnClickListener() {
@@ -86,9 +92,10 @@ public class ProductGridFragment extends Fragment {
                     startActivity(intent);
                 }
             });
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                view.findViewById(R.id.product_grid).setBackground(getContext().getDrawable(R.drawable.shr_product_grid_background_shape));
-            }
+            addEqui.setVisibility(View.GONE);
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                view.findViewById(R.id.product_grid).setBackground(getContext().getDrawable(R.drawable.shr_product_grid_background_shape));
+//            }
            fetchData(view);
             return view;
         }
@@ -135,7 +142,15 @@ public class ProductGridFragment extends Fragment {
                     getActivity().finish();
                 }
             });
-
+            Dashboard = view.findViewById(R.id.dashboard);
+            Dashboard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), Dashboard.class);
+                    startActivity(intent);
+                    getActivity().finishAffinity();
+                }
+            });
 
         }
 
@@ -145,8 +160,8 @@ public class ProductGridFragment extends Fragment {
             recyclerView = view.findViewById(R.id.recycler_view);
             recyclerView.setHasFixedSize(true);
             arrayList = new ArrayList<>();
-            progressDialog.setMessage("Please wait a while.....");
-            progressDialog.show();
+//            progressDialog.setMessage("Please wait a while.....");
+//            progressDialog.show();
             collectionReference = firebaseFirestore.collection("BOOKS");
             collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
@@ -168,12 +183,14 @@ public class ProductGridFragment extends Fragment {
                         }
                     });
                     recyclerView.setLayoutManager(gridLayoutManager);
-                    progressDialog.dismiss();
+                    shimmerFrameLayout.stopShimmer();
+                    shimmerFrameLayout.setVisibility(View.GONE);
+                    frameLayout.setVisibility(View.VISIBLE);
 //            int largePadding = getResources().getDimensionPixelSize(R.dimen.shr_staggered_product_grid_spacing_large);
 //            int smallPadding = getResources().getDimensionPixelSize(R.dimen.shr_staggered_product_grid_spacing_small);
-                    int largePadding = getResources().getDimensionPixelSize(R.dimen.shr_product_grid_spacing);
-                    int smallPadding = getResources().getDimensionPixelSize(R.dimen.shr_product_grid_spacing_small);
-                    recyclerView.addItemDecoration(new ProductGridItemDecoration(largePadding, smallPadding));
+//                    int largePadding = getResources().getDimensionPixelSize(R.dimen.shr_product_grid_spacing);
+//                    int smallPadding = getResources().getDimensionPixelSize(R.dimen.shr_product_grid_spacing_small);
+//                    recyclerView.addItemDecoration(new ProductGridItemDecoration(largePadding, smallPadding));
 
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -181,6 +198,7 @@ public class ProductGridFragment extends Fragment {
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
                     Log.i("msl;fdmslf", "onFailure: ----------------------------- Fail");
+
                 }
             });
 //
@@ -216,20 +234,10 @@ public class ProductGridFragment extends Fragment {
                     // StaggeredProductCardRecyclerViewAdapter adapter = new StaggeredProductCardRecyclerViewAdapter(arrayList);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(gridLayoutManager);
-//                            gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-//                                @Override
-//                                public int getSpanSize(int position) {
-//                                    return 1;
-//                                }
-//                            });
-//                            recyclerView.setLayoutManager(gridLayoutManager);
-//
-////            int largePadding = getResources().getDimensionPixelSize(R.dimen.shr_staggered_product_grid_spacing_large);
-////            int smallPadding = getResources().getDimensionPixelSize(R.dimen.shr_staggered_product_grid_spacing_small);
-//                            int largePadding = getResources().getDimensionPixelSize(R.dimen.shr_product_grid_spacing);
-//                            int smallPadding = getResources().getDimensionPixelSize(R.dimen.shr_product_grid_spacing_small);
-//                            recyclerView.addItemDecoration(new ProductGridItemDecoration(largePadding, smallPadding));
-
+                    recyclerView.setLayoutManager(gridLayoutManager);
+                    shimmerFrameLayout.stopShimmer();
+                    shimmerFrameLayout.setVisibility(View.GONE);
+                    frameLayout.setVisibility(View.VISIBLE);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -275,5 +283,15 @@ public class ProductGridFragment extends Fragment {
     }
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        shimmerFrameLayout.startShimmer();
+    }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        shimmerFrameLayout.stopShimmer();
+    }
 }

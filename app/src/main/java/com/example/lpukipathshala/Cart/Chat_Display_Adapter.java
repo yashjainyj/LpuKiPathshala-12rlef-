@@ -67,6 +67,8 @@ public class Chat_Display_Adapter extends RecyclerView.Adapter<Chat_Display_Adap
     @Override
     public void onBindViewHolder(@NonNull Chat_Display_Adapter.chatViewHolder cartViewHolder, int i) {
         UserDetails chat_data = details.get(i);
+        cartViewHolder.name.setBackground(null);
+        cartViewHolder.imageView.setBackground(null);
         cartViewHolder.name.setText(chat_data.getFname()+" "+chat_data.getLname());
                Glide.with(context).load(chat_data.getPic_url()).into(cartViewHolder.imageView);
 //        cartViewHolder.documentReference=  cartViewHolder.firebaseFirestore.collection("Users").document(chat_data.getSender_id());
