@@ -5,6 +5,7 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.0'
@@ -22,7 +23,11 @@ allprojects {
         flatDir {
             dirs 'libs'
         }
+        maven{
+            url  "http://dl.bintray.com/lukaville/maven"
+            }
 
+        maven { url 'https://jitpack.io' }
     }
 }
 

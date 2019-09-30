@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/app_bar"
+        style="@style/Widget.Shrine.Toolbar"
+        app:title="Study Material"
+        app:navigationIcon="@drawable/back"
+        ></android.support.v7.widget.Toolbar>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        style="@style/Widget.Shrine.TextInputLayout"
+        android:id="@+id/branch1"
+        android:layout_below="@+id/app_bar"
+        android:layout_marginRight="20dp"
+        android:clickable="true"
+        android:hint="Select Degree and Branch">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/branch"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:cursorVisible="false"
+            android:focusableInTouchMode="false"
+            android:maxLines="1" />
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/hint"
+        android:layout_below="@+id/branch1"
+        android:layout_marginBottom="1dp"
+        android:text="ex: CSE 101"
+        />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        style="@style/Widget.Shrine.TextInputLayout"
+        android:id="@+id/code1"
+        android:layout_below="@+id/hint"
+        android:clickable="true"
+        android:layout_marginRight="20dp"
+        android:hint="Enter Course Code">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/code"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/download"
+        android:text="Download"
+        android:layout_below="@+id/code1"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/fab_add"
+        android:id="@+id/uploadfile"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="30dp"/>
+
+</RelativeLayout>

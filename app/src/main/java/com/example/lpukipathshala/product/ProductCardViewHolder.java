@@ -41,6 +41,7 @@ public class ProductCardViewHolder extends RecyclerView.ViewHolder {
                     intent.putExtra("type",TYPE);
                     itemView.getContext().startActivity(intent);
                 }
+
             }
         });
     }

@@ -180,6 +180,7 @@ public class Product_Details extends AppCompatActivity {
         {
             //Toast.makeText(this, b_id, Toast.LENGTH_SHORT).show();
             collectionReference = firebaseFirestore.collection("Equipments");
+            //Toast.makeText(this, b_id, Toast.LENGTH_SHORT).show();
             collectionReference.whereEqualTo("equipmentId",b_id).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -207,6 +208,9 @@ public class Product_Details extends AppCompatActivity {
                             s=s+"Phone      : "+userDetails.getPhone()+"\n";
                             s=s+"Location  : "+userDetails.getLocation()+"\n";
                             details.setText(s);
+                            shimmerFrameLayout.stopShimmer();
+                            shimmerFrameLayout.setVisibility(View.GONE);
+                            scrollView.setVisibility(View.VISIBLE);
                             updateToken(FirebaseInstanceId.getInstance().getToken());
                             // Toast.makeText(Product_Details.this, s, Toast.LENGTH_SHORT).show();
                         }

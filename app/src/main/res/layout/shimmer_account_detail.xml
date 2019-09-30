@@ -153,15 +153,5 @@
         </RelativeLayout>
     </ScrollView>
 
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="30dp"
-        android:visibility="gone"
-        android:src="@drawable/edit"
-        android:id="@+id/edit"
-        android:layout_marginRight="30dp"
-        />
+
 </RelativeLayout>
