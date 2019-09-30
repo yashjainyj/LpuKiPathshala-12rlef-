@@ -13,12 +13,7 @@
     android:layout_margin="50dp"
     android:id="@+id/heading_lpu"
     android:text="LPU ki Pathshala"/>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/lpu"
-        android:layout_below="@+id/heading_lpu"
-        android:layout_centerHorizontal="true"/>
+
     <android.support.design.button.MaterialButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

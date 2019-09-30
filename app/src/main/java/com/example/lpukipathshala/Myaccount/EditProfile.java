@@ -71,6 +71,8 @@ public class EditProfile extends AppCompatActivity {
         about = findViewById(R.id.about1);
         phone = findViewById(R.id.phonenumber1);
         submit = findViewById(R.id.submit);
+
+
       //  backimage = findViewById(R.id.back);
 //        if(MyUtility.userDetails!=null)
 //        {

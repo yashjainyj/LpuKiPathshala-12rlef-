@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="50dp"
+                android:id="@+id/recent"
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:paddingStart="20dp"
+                android:cursorVisible="false"
+                android:hint="Recent"
+                android:focusableInTouchMode="false"
+                android:layout_gravity="center"
+                android:background="@drawable/profile"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="50dp"
+                android:id="@+id/ltoh"
+                android:singleLine="true"
+                android:cursorVisible="false"
+                android:layout_marginTop="10dp"
+                android:paddingStart="20dp"
+                android:hint="Low to High"
+                android:focusableInTouchMode="false"
+                android:layout_gravity="center"
+                android:background="@drawable/profile"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:cursorVisible="false"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="50dp"
+                android:id="@+id/htol"
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:paddingStart="20dp"
+                android:hint="High to Low"
+                android:focusableInTouchMode="false"
+                android:layout_gravity="center"
+                android:background="@drawable/profile"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</LinearLayout>

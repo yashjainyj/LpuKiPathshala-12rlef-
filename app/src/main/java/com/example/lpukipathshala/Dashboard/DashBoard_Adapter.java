@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.example.lpukipathshala.HomeActivity;
 import com.example.lpukipathshala.R;
 import com.example.lpukipathshala.quoraa.MainActivity;
-import com.example.lpukipathshala.videoblog.Video_main_class;
 
 import java.util.List;
 
@@ -64,15 +63,6 @@ public class DashBoard_Adapter extends RecyclerView.Adapter<DashBoard_Adapter.Da
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, MainActivity.class);
-                        context.startActivity(intent);
-                    }
-                });
-                break;
-            case "Video Blog":
-                category_viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(context, Video_main_class.class);
                         context.startActivity(intent);
                     }
                 });

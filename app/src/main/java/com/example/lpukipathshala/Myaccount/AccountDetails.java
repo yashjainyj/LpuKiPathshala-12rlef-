@@ -131,7 +131,7 @@ public class AccountDetails extends AppCompatActivity {
 
     }
 
-    private void setUpToolbar() {
+    public  void setUpToolbar() {
         Toolbar toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 

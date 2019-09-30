@@ -160,8 +160,11 @@ public class Add_Equipment extends AppCompatActivity {
                             }
                         });
                     }
-                    else
+                    else{
                         Toast.makeText(Add_Equipment.this, "Please Select Image", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+
 
 
                 }

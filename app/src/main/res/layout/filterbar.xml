@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/filter"
+        android:layout_height="wrap_content">
+
+        <android.support.design.card.MaterialCardView
+            android:background="@color/shimmer"
+            android:layout_width="match_parent"
+            app:cardElevation="0dp"
+            android:elevation="12dp"
+            android:id="@+id/cartdetail"
+            app:cardPreventCornerOverlap="true"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:padding="2dp"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:padding="5dp"
+                    android:id="@+id/branchfilter"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/profile"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_alignEnd="@id/branchfilter1"
+                        android:src="@drawable/ic_keyboard_arrow_down_black_24dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Branch"
+                        android:layout_centerHorizontal="true"
+                        android:textAlignment="center"
+                        android:textSize="14dp"
+                        android:id="@+id/branchfilter1"
+                        android:textColor="#000000"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:padding="5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_weight="1"
+                    android:id="@+id/sort"
+                    android:background="@drawable/profile"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/ic_keyboard_arrow_down_black_24dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Sort By"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/sort1"
+                        android:textSize="14dp"
+                        android:textColor="#000000"
+                        android:textAlignment="center"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </LinearLayout>
+        </android.support.design.card.MaterialCardView>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/cartdetail"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
