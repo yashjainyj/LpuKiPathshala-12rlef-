@@ -43,12 +43,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
 import java.security.Permission;
 import java.util.zip.ZipInputStream;
 
 import ir.mahdi.mzip.zip.ZipArchive;
 
 import static android.os.Environment.DIRECTORY_DOWNLOADS;
+import static android.os.Environment.getExternalStorageDirectory;
 
 public class StudyMaterial_Main extends AppCompatActivity {
 
@@ -84,9 +86,19 @@ public class StudyMaterial_Main extends AppCompatActivity {
                             if (dataSnapshot.exists())
                             {
                                 FileDownload_URL fileDownload_url = dataSnapshot.getValue(FileDownload_URL.class);
-                                downloadfile(StudyMaterial_Main.this,code.getText().toString(),".zip", DIRECTORY_DOWNLOADS,fileDownload_url.getUrl());
+                                File file = new File("/storage/emulated/0/Download/LpuKiPathshala");
+                                try{
+                                    if(file.mkdir()) {
+                                        System.out.println("Directory created");
+                                    } else {
+                                        System.out.println("Directory is not created");
+                                    }
+                                }catch(Exception e){
+                                    e.printStackTrace();
+                                }
+                                downloadfile(StudyMaterial_Main.this,code.getText().toString(),".zip", file.getAbsolutePath(),fileDownload_url.getUrl());
                                 ZipArchive zipArchive = new ZipArchive();
-                                zipArchive.unzip(DIRECTORY_DOWNLOADS+"/CSE 101","/sdcard/LpuKiPathshala/","");
+                                zipArchive.unzip(file.getAbsolutePath()+"/CSE 101",file.getAbsolutePath(),"");
                             }
                             else
                                 Toast.makeText(StudyMaterial_Main.this, "Sorry We don't have file", Toast.LENGTH_SHORT).show();
