@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.example.lpukipathshala.HomeActivity;
 import com.example.lpukipathshala.R;
-import com.example.lpukipathshala.StudyMaterial.StudyMaterial_Main;
 import com.example.lpukipathshala.quoraa.MainActivity;
 
 import java.util.List;
@@ -68,16 +67,6 @@ public class DashBoard_Adapter extends RecyclerView.Adapter<DashBoard_Adapter.Da
                     }
                 });
                 break;
-            case "Study Material" :
-                category_viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(context, StudyMaterial_Main.class);
-                        context.startActivity(intent);
-                    }
-                });
-                break;
-
         }
 
     }
