@@ -57,7 +57,10 @@ public class answeradapter extends RecyclerView.Adapter<answeradapter.MyViewHold
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 UserDetails userDetails = documentSnapshot.toObject(UserDetails.class);
                 myViewHolder.ansusername.setText(userDetails.getFname()+" "+userDetails.getLname());
-
+                myViewHolder.ansusername.setBackground(null);
+                myViewHolder.answeruserdate.setBackground(null);
+                myViewHolder.ansuserimage.setBackground(null);
+                myViewHolder.answerimg.setBackground(null);
                 Glide.with(mContext).load(userDetails.getPic_url()).into(myViewHolder.ansuserimage);
                 // Glide.with(AccountDetails.this).load(userDetails.getPic_url()).into(back);
             }

@@ -62,7 +62,12 @@ public class Queansweradpter extends RecyclerView.Adapter<Queansweradpter.MyView
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 UserDetails userDetails = documentSnapshot.toObject(UserDetails.class);
                 myViewHolder.qusername.setText(userDetails.getFname()+" "+userDetails.getLname());
-
+                myViewHolder.qusername.setBackground(null);
+                myViewHolder.queimg.setBackground(null);
+                myViewHolder.quedate.setBackground(null);
+                myViewHolder.queque.setBackground(null);
+                myViewHolder.userimg.setBackground(null);
+                myViewHolder.qtype.setBackground(null);
                 Glide.with(mContext).load(userDetails.getPic_url()).into(myViewHolder.userimg);
                // Glide.with(AccountDetails.this).load(userDetails.getPic_url()).into(back);
             }

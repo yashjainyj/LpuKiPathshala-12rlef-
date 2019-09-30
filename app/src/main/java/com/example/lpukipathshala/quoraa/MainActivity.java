@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.lpukipathshala.HomeActivity;
 import com.example.lpukipathshala.R;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<mQuestionGetSet> list;
     Toolbar toolbar;
     FirebaseAuth firebaseAuth;
+    ShimmerFrameLayout shimmerFrameLayout;
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     CollectionReference collectionReference;
 
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerViewque = findViewById(R.id.recycler_bloquery);
         bottomNavigationView = findViewById(R.id.bottomnavque);
-
+        shimmerFrameLayout = findViewById(R.id.shimmer);
        /* Queansweradpter queansweradpter = new Queansweradpter(this,list);
         recyclerViewque.setLayoutManager(new GridLayoutManager(this,1));
         recyclerViewque.setAdapter(queansweradpter);*/
@@ -92,7 +94,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        shimmerFrameLayout.startShimmer();
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        shimmerFrameLayout.stopShimmer();
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -111,6 +123,9 @@ public class MainActivity extends AppCompatActivity {
                 Queansweradpter queansweradpter = new Queansweradpter(MainActivity.this,list);
                 recyclerViewque.setLayoutManager(new GridLayoutManager(MainActivity.this,1));
                 recyclerViewque.setAdapter(queansweradpter);
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+                recyclerViewque.setVisibility(View.VISIBLE);
 
             }
         }).addOnFailureListener(new OnFailureListener() {
