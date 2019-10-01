@@ -14,6 +14,9 @@
         tools:replace="android:appComponentFactory">
         <activity android:name=".videoblog.Video_main_class"></activity>
         <activity android:name=".videoblog.Uploadvideoquestion"></activity>
+        <activity android:name=".videoblog.answerVideoMain">
+
+        </activity>
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />

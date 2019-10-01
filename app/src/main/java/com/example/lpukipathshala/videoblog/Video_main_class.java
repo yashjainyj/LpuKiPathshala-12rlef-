@@ -117,7 +117,7 @@ public class Video_main_class extends AppCompatActivity {
                     String q_id = queryDocumentSnapshot.getId();
                     list.add(new mQuestionGetSet(mQuestionGetSet.getUid(),mQuestionGetSet.getQtitle(),mQuestionGetSet.getQtype(),mQuestionGetSet.getQimgurl(),mQuestionGetSet.getQdate(),q_id));
                 }
-                Queansweradpter queansweradpter = new Queansweradpter(Video_main_class.this,list);
+                videoQuestionAdapter queansweradpter = new videoQuestionAdapter(Video_main_class.this,list);
                 recyclerViewque.setLayoutManager(new GridLayoutManager(Video_main_class.this,1));
                 recyclerViewque.setAdapter(queansweradpter);
                 shimmerFrameLayout.stopShimmer();
