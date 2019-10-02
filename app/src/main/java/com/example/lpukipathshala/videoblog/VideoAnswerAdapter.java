@@ -83,6 +83,7 @@ public class VideoAnswerAdapter extends RecyclerView.Adapter<com.example.lpukipa
         }
         else{
             myViewHolder.answervideoview.setVideoURI(Uri.parse(dailyAlbum.getAvideourl()));
+            myViewHolder.answervideoview.seekTo(1);
             myViewHolder.answervideoview.requestFocus();
 
             myViewHolder.answervideoview.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
