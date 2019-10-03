@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.lpukipathshala">
-
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <application
         android:allowBackup="true"
         android:appComponentFactory="whateverString"
@@ -41,6 +43,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".Category.Category_Main" />
         <activity android:name=".quoraa.MainActivity" />
+        <activity android:name=".StudyMaterial.StudyMaterial_Main"></activity>
         <activity android:name=".quoraa.answercmainclass" />
         <activity android:name=".Equipments.Add_Equipment" />
         <activity android:name=".quoraa.answermoreup" />
