@@ -46,7 +46,7 @@ public class videoQuestionAdapter extends RecyclerView.Adapter<com.example.lpuki
     public com.example.lpukipathshala.videoblog.videoQuestionAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        view = inflater.inflate(R.layout.cardformainpage,viewGroup,false);
+        view = inflater.inflate(R.layout.cardofvideoquestion,viewGroup,false);
         return new com.example.lpukipathshala.videoblog.videoQuestionAdapter.MyViewHolder(view);
     }
 
@@ -96,7 +96,7 @@ public class videoQuestionAdapter extends RecyclerView.Adapter<com.example.lpuki
         myViewHolder.buttonofrecycle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, answercmainclass.class);
+                Intent intent = new Intent(mContext, com.example.lpukipathshala.videoblog.answerVideoMain.class);
                 // Toast.makeText(mContext, dailyAlbum.getQ_id(), Toast.LENGTH_SHORT).show();
                 intent.putExtra("q_id",dailyAlbum.getQ_id());
                 mContext.startActivity(intent);
@@ -117,14 +117,14 @@ public class videoQuestionAdapter extends RecyclerView.Adapter<com.example.lpuki
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            qtype = itemView.findViewById(R.id.typeofque);
-            queque = itemView.findViewById(R.id.question);
-            qusername = itemView.findViewById(R.id.username);
-            quedate = itemView.findViewById(R.id.dateofque);
+            qtype = itemView.findViewById(R.id.typeofquevideo);
+            queque = itemView.findViewById(R.id.questionvideo);
+            qusername = itemView.findViewById(R.id.usernamevideo);
+            quedate = itemView.findViewById(R.id.dateofquevideo);
             queans = itemView.findViewById(R.id.Answers);
-            queimg = itemView.findViewById(R.id.Imagetopost);
-            userimg = itemView.findViewById(R.id.profile_image);
-            buttonofrecycle = itemView.findViewById(R.id.moresnswers);
+            queimg = itemView.findViewById(R.id.Imagetopostvideo);
+            userimg = itemView.findViewById(R.id.profile_imagevideo);
+            buttonofrecycle = itemView.findViewById(R.id.moresnswersvideo);
 
 
         }
