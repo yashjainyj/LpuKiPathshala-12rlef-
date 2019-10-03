@@ -2,9 +2,11 @@ package com.example.lpukipathshala.StudyMaterial;
 import android.Manifest;
 import android.app.Activity;
 import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
@@ -57,10 +59,13 @@ public class StudyMaterial_Main extends AppCompatActivity {
     public static int STORAGE_PERMISSION_CODE = 1;
    DatabaseReference databaseReference;
     TextInputEditText branch,code;
+    File file = new File("/sdCard/LpuKiPathshala");
     FloatingActionButton upload;
     String selected_branch,Selected_Degree;
     boolean selectebranch[] = new boolean[9];
     Button download;
+    long downloadID ;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,8 +77,19 @@ public class StudyMaterial_Main extends AppCompatActivity {
             setBranch();
         });
         code = findViewById(R.id.code);
+       // registerReceiver(onDownloadComplete,new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
         download = findViewById(R.id.download);
         upload = findViewById(R.id.uploadfile);
+        try{
+            if(!file.exists()) {
+                file.mkdir();
+                System.out.println("Directory created");
+            } else {
+                System.out.println("Directory is not created");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,19 +102,11 @@ public class StudyMaterial_Main extends AppCompatActivity {
                             if (dataSnapshot.exists())
                             {
                                 FileDownload_URL fileDownload_url = dataSnapshot.getValue(FileDownload_URL.class);
-                                File file = new File("/storage/emulated/0/Download/LpuKiPathshala");
-                                try{
-                                    if(file.mkdir()) {
-                                        System.out.println("Directory created");
-                                    } else {
-                                        System.out.println("Directory is not created");
-                                    }
-                                }catch(Exception e){
-                                    e.printStackTrace();
-                                }
                                 downloadfile(StudyMaterial_Main.this,code.getText().toString(),".zip", file.getAbsolutePath(),fileDownload_url.getUrl());
+                               Toast.makeText(StudyMaterial_Main.this, file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
                                 ZipArchive zipArchive = new ZipArchive();
-                                zipArchive.unzip(file.getAbsolutePath()+"/CSE 101",file.getAbsolutePath(),"");
+                                zipArchive.unzip(file.getAbsolutePath()+"/CSE 101.zip",file.getAbsolutePath(),"");
+
                             }
                             else
                                 Toast.makeText(StudyMaterial_Main.this, "Sorry We don't have file", Toast.LENGTH_SHORT).show();
@@ -127,10 +135,27 @@ public class StudyMaterial_Main extends AppCompatActivity {
         Uri uri = Uri.parse(url);
         DownloadManager.Request request = new DownloadManager.Request((uri));
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-        request.setDestinationInExternalFilesDir(studyMaterial_main,directoryDownloads,code+extension);
+        request.setDestinationInExternalPublicDir(directoryDownloads,code+extension);
         downloadManager.enqueue(request);
-    }
 
+    }
+    private BroadcastReceiver onDownloadComplete = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //Fetching the download id received with the broadcast
+            long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+            //Checking if the received broadcast is for our enqueued download by matching download id
+            if (downloadID == id) {
+                Toast.makeText(StudyMaterial_Main.this, "Download Completed", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+       // unregisterReceiver(onDownloadComplete);
+    }
 
     public  void setUpToolbar() {
         Toolbar toolbar = findViewById(R.id.app_bar);
