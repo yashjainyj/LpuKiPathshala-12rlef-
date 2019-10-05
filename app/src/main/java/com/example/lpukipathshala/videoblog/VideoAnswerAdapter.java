@@ -1,6 +1,7 @@
 package com.example.lpukipathshala.videoblog;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -112,6 +113,16 @@ public class VideoAnswerAdapter extends RecyclerView.Adapter<com.example.lpukipa
                     return false;
                 }
             });
+
+            myViewHolder.videocomments.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, com.example.lpukipathshala.videoblog.videocommentrecycler.class);
+                    // Toast.makeText(mContext, dailyAlbum.getQ_id(), Toast.LENGTH_SHORT).show();
+                    intent.putExtra("a_id",dailyAlbum.getAuid());
+                    mContext.startActivity(intent);
+                }
+            });
          //   Glide.with(mContext).load(dailyAlbum.getAvideourl());
        /*     myViewHolder.answervideoview.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
@@ -147,7 +158,7 @@ public class VideoAnswerAdapter extends RecyclerView.Adapter<com.example.lpukipa
         FullScreenVideoView answervideoview;
         ScrollView scrollofans;
         MediaController mc;
-        ImageView ansuserimage;
+        ImageView ansuserimage,videocomments;
         TextView ansusername,answeruserdate;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -158,6 +169,7 @@ public class VideoAnswerAdapter extends RecyclerView.Adapter<com.example.lpukipa
             ansuserimage = itemView.findViewById(R.id.answer_profile_image);
             ansusername = itemView.findViewById(R.id.answer_user_name);
             answeruserdate = itemView.findViewById(R.id.answer_dateofque);
+            videocomments  = itemView.findViewById(R.id.videocomments);
 
 //            scrollofans.setOnTouchListener(new View.OnTouchListener() {
 //                @Override

@@ -11,6 +11,16 @@ public class mAnswerVideoGetSet {
     String avideourl;
     String ansprofileimage;
 
+    public String getAuid() {
+        return auid;
+    }
+
+    public void setAuid(String auid) {
+        this.auid = auid;
+    }
+
+    String auid;
+
     public String getUid() {
         return uid;
     }
@@ -70,7 +80,7 @@ public class mAnswerVideoGetSet {
     String ansusername;
     String ansdate;
 
-    public mAnswerVideoGetSet(String uid, String quid, String aAnswer, String avideourl, String ansprofileimage, String ansusername, String ansdate) {
+    public mAnswerVideoGetSet(String uid, String quid, String aAnswer, String avideourl, String ansprofileimage, String ansusername, String ansdate ,String auid) {
         this.uid = uid;
         this.quid = quid;
         this.aAnswer = aAnswer;
@@ -78,6 +88,8 @@ public class mAnswerVideoGetSet {
         this.ansprofileimage = ansprofileimage;
         this.ansusername = ansusername;
         this.ansdate = ansdate;
+
+
     }
 
     public mAnswerVideoGetSet(String uid, String quid, String aAnswer, String avideourl, String ansdate) {
@@ -86,5 +98,15 @@ public class mAnswerVideoGetSet {
         this.aAnswer = aAnswer;
         this.avideourl = avideourl;
         this.ansdate = ansdate;
+
+    }
+
+    public mAnswerVideoGetSet(String uid, String quid, String aAnswer, String avideourl, String ansdate, String auid) {
+        this.uid = uid;
+        this.quid = quid;
+        this.aAnswer = aAnswer;
+        this.avideourl = avideourl;
+        this.ansdate = ansdate;
+        this.auid = auid;
     }
 }
