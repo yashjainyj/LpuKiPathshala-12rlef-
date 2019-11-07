@@ -12,6 +12,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -41,10 +43,15 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     CollectionReference collectionReference;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main1);
+
+
+        toolbar = findViewById(R.id.app_bar);
 
 
         /*list.add(new Demoquecontent("Maths","What is Addition in maths?",R.drawable.ic_local_post_office_black_24dp,
@@ -93,7 +100,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
+
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -135,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
 
 }

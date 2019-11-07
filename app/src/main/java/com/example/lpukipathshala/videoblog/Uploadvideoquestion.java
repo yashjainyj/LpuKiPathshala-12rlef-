@@ -52,7 +52,7 @@ public class Uploadvideoquestion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.formofque);
+        setContentView(R.layout.videoquestionoverview);
 
         muploadimage = findViewById(R.id.qimgupload);
         muploadque = findViewById(R.id.queuploadbutton);
@@ -62,12 +62,12 @@ public class Uploadvideoquestion extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         storageReference = FirebaseStorage.getInstance().getReference();
-        muploadimage.setOnClickListener(new View.OnClickListener() {
+       /* muploadimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showImageChooser();
             }
-        });
+        });*/
         muploadque.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

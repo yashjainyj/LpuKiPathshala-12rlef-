@@ -2,6 +2,7 @@ package com.example.lpukipathshala.quoraa;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -85,6 +86,7 @@ public class Queansweradpter extends RecyclerView.Adapter<Queansweradpter.MyView
         }
         else{
             Glide.with(mContext).load(dailyAlbum.getQimgurl()).into(myViewHolder.queimg);
+
         }
         //myViewHolder.quename.setText(dailyAlbum.getQueusername());
         myViewHolder.quedate.setText(dailyAlbum.getQdate());
@@ -110,7 +112,8 @@ public class Queansweradpter extends RecyclerView.Adapter<Queansweradpter.MyView
         DocumentReference documentReference;
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
         TextView qtype,queque,qusername,quedate,queans;
-        ImageView queimg,userimg;
+        ImageView userimg;
+        ImageView queimg;
         ImageView buttonofrecycle;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -120,11 +123,11 @@ public class Queansweradpter extends RecyclerView.Adapter<Queansweradpter.MyView
             qusername = itemView.findViewById(R.id.username);
             quedate = itemView.findViewById(R.id.dateofque);
             queans = itemView.findViewById(R.id.Answers);
-            queimg = itemView.findViewById(R.id.Imagetopost);
+          //  queimg = itemView.findViewById(R.id.Imagetopost);
             userimg = itemView.findViewById(R.id.profile_image);
             buttonofrecycle = itemView.findViewById(R.id.moresnswers);
 
-
+             queimg = itemView.findViewById(R.id.Imagetopost);
         }
     }
 }

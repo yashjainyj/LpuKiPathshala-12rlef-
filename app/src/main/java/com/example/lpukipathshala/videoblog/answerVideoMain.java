@@ -203,8 +203,8 @@ public class answerVideoMain extends AppCompatActivity {
                 for(QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots)
                 {
                     mAnswerVideoGetSet mAnswerGetSet  = queryDocumentSnapshot.toObject(com.example.lpukipathshala.videoblog.mAnswerVideoGetSet.class);
-                    //String q_id = queryDocumentSnapshot.getId();
-                    list1.add(new mAnswerVideoGetSet(mAnswerGetSet.getUid(),mAnswerGetSet.getQuid(),mAnswerGetSet.getaAnswer(),mAnswerGetSet.getAvideourl(),mAnswerGetSet.getAnsdate()));
+                    String a_id = queryDocumentSnapshot.getId();
+                    list1.add(new mAnswerVideoGetSet(mAnswerGetSet.getUid(),mAnswerGetSet.getQuid(),mAnswerGetSet.getaAnswer(),mAnswerGetSet.getAvideourl(),mAnswerGetSet.getAnsdate(),a_id));
                 }
                 VideoAnswerAdapter answeradapter= new VideoAnswerAdapter(answerVideoMain.this,list1);
                 recyclerViewans.setLayoutManager(new GridLayoutManager(com.example.lpukipathshala.videoblog.answerVideoMain.this,1));

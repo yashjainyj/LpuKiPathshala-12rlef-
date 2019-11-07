@@ -46,7 +46,7 @@ public class videoQuestionAdapter extends RecyclerView.Adapter<com.example.lpuki
     public com.example.lpukipathshala.videoblog.videoQuestionAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view;
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        view = inflater.inflate(R.layout.cardofvideoquestion,viewGroup,false);
+        view = inflater.inflate(R.layout.videooverview,viewGroup,false);
         return new com.example.lpukipathshala.videoblog.videoQuestionAdapter.MyViewHolder(view);
     }
 
@@ -65,7 +65,7 @@ public class videoQuestionAdapter extends RecyclerView.Adapter<com.example.lpuki
                 UserDetails userDetails = documentSnapshot.toObject(UserDetails.class);
                 myViewHolder.qusername.setText(userDetails.getFname()+" "+userDetails.getLname());
                 myViewHolder.qusername.setBackground(null);
-                myViewHolder.queimg.setBackground(null);
+             //   myViewHolder.queimg.setBackground(null);
                 myViewHolder.quedate.setBackground(null);
                 myViewHolder.queque.setBackground(null);
                 myViewHolder.userimg.setBackground(null);
@@ -81,13 +81,13 @@ public class videoQuestionAdapter extends RecyclerView.Adapter<com.example.lpuki
         });
         myViewHolder.qtype.setText(dailyAlbum.getQtype());
         myViewHolder.queque.setText(dailyAlbum.getQtitle());
-        if(dailyAlbum.getQimgurl()==null)
+      /*  if(dailyAlbum.getQimgurl()==null)
         {
             myViewHolder.queimg.setVisibility(View.GONE);
         }
         else{
             Glide.with(mContext).load(dailyAlbum.getQimgurl()).into(myViewHolder.queimg);
-        }
+        }*/
         //myViewHolder.quename.setText(dailyAlbum.getQueusername());
         myViewHolder.quedate.setText(dailyAlbum.getQdate());
         //myViewHolder.queans.setText(dailyAlbum.getQueanswer());
@@ -122,7 +122,7 @@ public class videoQuestionAdapter extends RecyclerView.Adapter<com.example.lpuki
             qusername = itemView.findViewById(R.id.usernamevideo);
             quedate = itemView.findViewById(R.id.dateofquevideo);
             queans = itemView.findViewById(R.id.Answers);
-            queimg = itemView.findViewById(R.id.Imagetopostvideo);
+           // queimg = itemView.findViewById(R.id.Imagetopostvideo);
             userimg = itemView.findViewById(R.id.profile_imagevideo);
             buttonofrecycle = itemView.findViewById(R.id.moresnswersvideo);
 
