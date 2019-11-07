@@ -744,9 +744,7 @@ public class ProductGridFragment extends Fragment {
             collectionReference = firebaseFirestore.collection("BOOKS");
             collectionReference.whereEqualTo("branch",selected_branch).addSnapshotListener(new EventListener<QuerySnapshot>() {
                 @Override
-                public void onEvent(@Nullable Qu
-
-                                            erySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                     for(QueryDocumentSnapshot queryDocumentSnapshots1 : queryDocumentSnapshots)
                     {
                         Add_Book_Model productEntry = queryDocumentSnapshots1.toObject(Add_Book_Model.class);
