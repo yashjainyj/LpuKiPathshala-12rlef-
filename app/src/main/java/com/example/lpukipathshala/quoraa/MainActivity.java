@@ -54,44 +54,12 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.app_bar);
 
 
-        /*list.add(new Demoquecontent("Maths","What is Addition in maths?",R.drawable.ic_local_post_office_black_24dp,
-                R.drawable.queuser,"Prem Narayan","8sep2019",
-                "It is used to add the two number and get the sum"));
-        list.add(new Demoquecontent("Maths","What is Addition in maths?",R.drawable.ic_local_post_office_black_24dp,
-                R.drawable.queuser,"Prem Narayan","8sep2019",
-                "It is used to add the two number and get the sum"));
-        list.add(new Demoquecontent("Maths","What is Addition in maths?",R.drawable.ic_local_post_office_black_24dp,
-                R.drawable.queuser,"Prem Narayan","8sep2019",
-                "It is used to add the two number and get the sum"));
-        list.add(new Demoquecontent("Maths","What is Addition in maths?",R.drawable.ic_local_post_office_black_24dp,
-                R.drawable.queuser,"Prem Narayan","8sep2019",
-                "It is used to add the two number and get the sum"));*/
 
 
         recyclerViewque = findViewById(R.id.recycler_bloquery);
         bottomNavigationView = findViewById(R.id.bottomnavque);
         shimmerFrameLayout = findViewById(R.id.shimmer);
-       /* Queansweradpter queansweradpter = new Queansweradpter(this,list);
-        recyclerViewque.setLayoutManager(new GridLayoutManager(this,1));
-        recyclerViewque.setAdapter(queansweradpter);*/
 
-        /*bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.navigation_songs:
-                        Intent intent = new Intent(MainActivity.this,Uploadquestion.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.navigation_artists:{
-                        Intent intent1 = new Intent(MainActivity.this, HomeActivity.class);
-                        startActivity(intent1);
-                        break;
-                    }
-                }
-                return true;
-            }
-        });*/
         bottomNavigationView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
