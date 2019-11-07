@@ -12,6 +12,26 @@
     <android.support.design.button.MaterialButton
         style="@style/Widget.Shrine.Button.TextButton"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Books"
+        android:text="@string/shr_bottoms_label" />
+
+    <!--<android.support.design.button.MaterialButton-->
+        <!--style="@style/Widget.Shrine.Button.TextButton"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/categories"-->
+        <!--android:text="@string/shr_accessories_label" />-->
+
+    <android.support.design.button.MaterialButton
+        style="@style/Widget.Shrine.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/equipment"
+        android:text="@string/shr_shoes_label" />
+    <android.support.design.button.MaterialButton
+        style="@style/Widget.Shrine.Button.TextButton"
+        android:layout_width="wrap_content"
         android:id="@+id/doubts"
         android:layout_height="wrap_content"
         android:text="@string/shr_featured_label" />
@@ -19,31 +39,15 @@
         style="@style/Widget.Shrine.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/categories"
-        android:text="@string/shr_accessories_label" />
-
-    <android.support.design.button.MaterialButton
-        style="@style/Widget.Shrine.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/shr_shoes_label" />
-
-    <android.support.design.button.MaterialButton
-        style="@style/Widget.Shrine.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/videoblog"
         android:text="@string/shr_tops_label" />
 
-    <android.support.design.button.MaterialButton
-        style="@style/Widget.Shrine.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/shr_bottoms_label" />
 
     <android.support.design.button.MaterialButton
         style="@style/Widget.Shrine.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/study_material"
         android:text="@string/shr_dresses_label" />
 
     <View

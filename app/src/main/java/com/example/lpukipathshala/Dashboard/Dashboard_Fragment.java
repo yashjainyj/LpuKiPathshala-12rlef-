@@ -18,16 +18,22 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.example.lpukipathshala.Category.Category_Details;
 import com.example.lpukipathshala.Category.Category_Main;
+import com.example.lpukipathshala.Equipments.EquipmentGrid;
+import com.example.lpukipathshala.HomeActivity;
 import com.example.lpukipathshala.Myaccount.AccountDetails;
 import com.example.lpukipathshala.R;
+import com.example.lpukipathshala.StudyMaterial.StudyMaterial_Main;
 import com.example.lpukipathshala.product.NavigationIconClickListener;
 import com.example.lpukipathshala.product.ProductCardRecyclerViewAdapter;
+import com.example.lpukipathshala.product.ProductGridFragment;
 import com.example.lpukipathshala.quoraa.MainActivity;
+import com.example.lpukipathshala.videoblog.Video_main_class;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class Dashboard_Fragment extends Fragment {
-    MaterialButton myaccount,category,Doubts;
+    MaterialButton myaccount,category,Doubts,Dashboard,Books,Equipments,video,study_material;
     RecyclerView recyclerView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,17 @@ public class Dashboard_Fragment extends Fragment {
 //            view.findViewById(R.id.product_grid).setBackground(getContext().getDrawable(R.drawable.shr_product_grid_background_shape));
 //        }
         addRecyclerView(view);
+        File file2 = new File("/mnt/sdcard/LpuKiPathshala");
+        try{
+            if(!file2.exists()) {
+                file2.mkdir();
+                System.out.println("Directory created");
+            } else {
+                System.out.println("Directory is not created");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return view;
     }
 
@@ -91,6 +108,7 @@ public class Dashboard_Fragment extends Fragment {
                 getContext().getResources().getDrawable(R.drawable.close)));
 
 
+
         myaccount = view.findViewById(R.id.myaccount);
         myaccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,12 +119,12 @@ public class Dashboard_Fragment extends Fragment {
                 getActivity().finish();
             }
         });
-        category = view.findViewById(R.id.categories);
-        category.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), Category_Main.class);
-            startActivity(intent);
-            getActivity().finish();
-        });
+//        category = view.findViewById(R.id.categories);
+//        category.setOnClickListener(v -> {
+//            Intent intent = new Intent(getContext(), Category_Main.class);
+//            startActivity(intent);
+//            getActivity().finish();
+//        });
 
         Doubts = view.findViewById(R.id.doubts);
         Doubts.setOnClickListener(new View.OnClickListener() {
@@ -117,8 +135,56 @@ public class Dashboard_Fragment extends Fragment {
                 getActivity().finish();
             }
         });
+        Dashboard = view.findViewById(R.id.dashboard);
+        Dashboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Dashboard.class);
+                startActivity(intent);
+                getActivity().finishAffinity();
+            }
+        });
+        Books = view.findViewById(R.id.Books);
+        Books.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HomeActivity.class);
+                startActivity(intent);
+                getActivity().finishAffinity();
+            }
+        });
+        Equipments = view.findViewById(R.id.equipment);
+        Equipments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HomeActivity.class);
+                intent.putExtra("type","Equipment");
+                startActivity(intent);
+                getActivity().finishAffinity();
+            }
+        });
+        video = view.findViewById(R.id.videoblog);
+        video.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Video_main_class.class);
+                startActivity(intent);
+                getActivity().finishAffinity();
+            }
+        });
+        study_material = view.findViewById(R.id.study_material);
+        study_material.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), StudyMaterial_Main.class);
+                startActivity(intent);
+                getActivity().finishAffinity();
+            }
+        });
+
 
 
     }
+
 
 }
