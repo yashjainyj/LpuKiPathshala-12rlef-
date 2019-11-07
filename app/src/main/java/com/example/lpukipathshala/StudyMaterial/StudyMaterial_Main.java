@@ -21,12 +21,18 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +53,8 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.security.Permission;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.zip.ZipInputStream;
 
 import ir.mahdi.mzip.zip.ZipArchive;
@@ -59,13 +67,15 @@ public class StudyMaterial_Main extends AppCompatActivity {
     public static int STORAGE_PERMISSION_CODE = 1;
    DatabaseReference databaseReference;
     TextInputEditText branch,code;
-    File file = new File("/sdCard/LpuKiPathshala");
+    File file = new File("/LpuKiPathshala");
     FloatingActionButton upload;
     String selected_branch,Selected_Degree;
     boolean selectebranch[] = new boolean[9];
     Button download;
     long downloadID ;
-
+    String course_code="";
+    RecyclerView recyclerView;
+    ArrayList<String> arrayList;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,11 +83,14 @@ public class StudyMaterial_Main extends AppCompatActivity {
         FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
         setUpToolbar();
         branch=findViewById(R.id.branch);
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
         branch.setOnClickListener(v -> {
             setBranch();
         });
         code = findViewById(R.id.code);
-       // registerReceiver(onDownloadComplete,new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+
+        registerReceiver(onDownloadComplete,new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
         download = findViewById(R.id.download);
         upload = findViewById(R.id.uploadfile);
         try{
@@ -90,11 +103,42 @@ public class StudyMaterial_Main extends AppCompatActivity {
         }catch(Exception e){
             e.printStackTrace();
         }
+       arrayList = new ArrayList<>();
+        File file2 = new File("/mnt/sdcard/LpuKiPathshala");
+        try{
+            if(!file2.exists()) {
+                file2.mkdir();
+                System.out.println("Directory created");
+            } else {
+                System.out.println("Directory is not created");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        Log.d("Files", "Path: " + file2.getPath());
+        File[] files = file2.listFiles();
+
+        if(files !=null)
+        {
+            Log.d("Files", "Size: "+ files.length);
+            for (int i = 0; i < files.length; i++)
+            {
+                Log.d("Files", "FileName:" + files[i].getName());
+                arrayList.add(files[i].getName());
+            }
+        }
+        RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(StudyMaterial_Main.this);
+        GetFileAdapter adapter = new GetFileAdapter(StudyMaterial_Main.this,arrayList);
+        recyclerView.setLayoutManager(linearLayout);
+        recyclerView.setAdapter(adapter);
         download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (selected_branch!=null && !code.getText().toString().equalsIgnoreCase(""))
                 {
+
+                    course_code = code.getText().toString();
+                    
                     databaseReference = FirebaseDatabase.getInstance().getReference().child("StudyMaterial/"+selected_branch+"/"+code.getText().toString());
                     databaseReference.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -103,10 +147,7 @@ public class StudyMaterial_Main extends AppCompatActivity {
                             {
                                 FileDownload_URL fileDownload_url = dataSnapshot.getValue(FileDownload_URL.class);
                                 downloadfile(StudyMaterial_Main.this,code.getText().toString(),".zip", file.getAbsolutePath(),fileDownload_url.getUrl());
-                               Toast.makeText(StudyMaterial_Main.this, file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
-                                ZipArchive zipArchive = new ZipArchive();
-                                zipArchive.unzip(file.getAbsolutePath()+"/CSE 101.zip",file.getAbsolutePath(),"");
-
+                                Log.i("Name ", "onDataChange:  "+file.getName());
                             }
                             else
                                 Toast.makeText(StudyMaterial_Main.this, "Sorry We don't have file", Toast.LENGTH_SHORT).show();
@@ -116,9 +157,15 @@ public class StudyMaterial_Main extends AppCompatActivity {
                             Toast.makeText(StudyMaterial_Main.this, "Not Found", Toast.LENGTH_SHORT).show();
                         }
                     });
+
                 }
+                else {
+
+                }
+
             }
         });
+
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,7 +183,7 @@ public class StudyMaterial_Main extends AppCompatActivity {
         DownloadManager.Request request = new DownloadManager.Request((uri));
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
         request.setDestinationInExternalPublicDir(directoryDownloads,code+extension);
-        downloadManager.enqueue(request);
+        downloadID = downloadManager.enqueue(request);
 
     }
     private BroadcastReceiver onDownloadComplete = new BroadcastReceiver() {
@@ -147,6 +194,30 @@ public class StudyMaterial_Main extends AppCompatActivity {
             //Checking if the received broadcast is for our enqueued download by matching download id
             if (downloadID == id) {
                 Toast.makeText(StudyMaterial_Main.this, "Download Completed", Toast.LENGTH_SHORT).show();
+                ZipArchive zipArchive = new ZipArchive();
+                File file3 = new File("/mnt/sdcard/LpuKiPathshala/"+ course_code);
+                if(file3.exists())
+                {
+                    file3.delete();
+                }
+                zipArchive.unzip("/mnt/sdcard/LpuKiPathshala"+"/" + course_code+ ".zip","/mnt/sdcard/LpuKiPathshala/","");
+                File file1 = new File("/mnt/sdcard/LpuKiPathshala/"+ course_code+".zip");
+                file1.delete();
+                arrayList.clear();
+                File file2 = new File("/mnt/sdcard/LpuKiPathshala");
+                Log.d("Files", "Path: " + file2.getPath());
+                File[] files = file2.listFiles();
+                Log.d("Files", "Size: "+ files.length);
+                for (int i = 0; i < files.length; i++)
+                {
+                    Log.d("Files", "FileName:" + files[i].getName());
+                    arrayList.add(files[i].getName());
+                }
+                RecyclerView.LayoutManager linearLayout = new LinearLayoutManager(StudyMaterial_Main.this);
+                GetFileAdapter adapter = new GetFileAdapter(StudyMaterial_Main.this,arrayList);
+                recyclerView.setLayoutManager(linearLayout);
+                recyclerView.setAdapter(adapter);
+
             }
         }
     };
@@ -154,7 +225,7 @@ public class StudyMaterial_Main extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-       // unregisterReceiver(onDownloadComplete);
+         unregisterReceiver(onDownloadComplete);
     }
 
     public  void setUpToolbar() {

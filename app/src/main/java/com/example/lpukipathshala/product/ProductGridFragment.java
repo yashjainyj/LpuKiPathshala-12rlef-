@@ -32,9 +32,13 @@ import android.widget.Toast;
 import com.example.lpukipathshala.Add_Product.AddBook;
 import com.example.lpukipathshala.Dashboard.Dashboard;
 import com.example.lpukipathshala.DataModels.Add_Book_Model;
+import com.example.lpukipathshala.Equipments.EquipmentGrid;
+import com.example.lpukipathshala.HomeActivity;
 import com.example.lpukipathshala.Myaccount.AccountDetails;
 import com.example.lpukipathshala.R;
+import com.example.lpukipathshala.StudyMaterial.StudyMaterial_Main;
 import com.example.lpukipathshala.quoraa.MainActivity;
+import com.example.lpukipathshala.videoblog.Video_main_class;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -59,7 +63,7 @@ import static android.support.constraint.Constraints.TAG;
 
 @SuppressLint("ValidFragment")
 public class ProductGridFragment extends Fragment {
-    MaterialButton myaccount,category,Doubts,Dashboard;
+    MaterialButton myaccount,category,Doubts,Dashboard,Books,Equipments,video,study_material;
     FirebaseAuth mAuth;
     RelativeLayout relativeLayout;
     FloatingActionMenu floatingActionMenu;
@@ -740,7 +744,9 @@ public class ProductGridFragment extends Fragment {
             collectionReference = firebaseFirestore.collection("BOOKS");
             collectionReference.whereEqualTo("branch",selected_branch).addSnapshotListener(new EventListener<QuerySnapshot>() {
                 @Override
-                public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                public void onEvent(@Nullable Qu
+
+                                            erySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                     for(QueryDocumentSnapshot queryDocumentSnapshots1 : queryDocumentSnapshots)
                     {
                         Add_Book_Model productEntry = queryDocumentSnapshots1.toObject(Add_Book_Model.class);
@@ -794,12 +800,12 @@ public class ProductGridFragment extends Fragment {
                     getActivity().finish();
                 }
             });
-            category = view.findViewById(R.id.categories);
-            category.setOnClickListener(v -> {
-                Intent intent = new Intent(getContext(), Dashboard.class);
-                startActivity(intent);
-                getActivity().finish();
-            });
+//            category = view.findViewById(R.id.categories);
+//            category.setOnClickListener(v -> {
+//                Intent intent = new Intent(getContext(), Dashboard.class);
+//                startActivity(intent);
+//                getActivity().finish();
+//            });
 
             Doubts = view.findViewById(R.id.doubts);
             Doubts.setOnClickListener(new View.OnClickListener() {
@@ -819,6 +825,43 @@ public class ProductGridFragment extends Fragment {
                     getActivity().finishAffinity();
                 }
             });
+        Books = view.findViewById(R.id.Books);
+        Books.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HomeActivity.class);
+                startActivity(intent);
+                getActivity().finishAffinity();
+            }
+        });
+        Equipments = view.findViewById(R.id.equipment);
+        Equipments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), HomeActivity.class);
+                intent.putExtra("type","Equipment");
+                startActivity(intent);
+                getActivity().finishAffinity();
+            }
+        });
+        video = view.findViewById(R.id.videoblog);
+        video.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Video_main_class.class);
+                startActivity(intent);
+                getActivity().finishAffinity();
+            }
+        });
+        study_material = view.findViewById(R.id.study_material);
+        study_material.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), StudyMaterial_Main.class);
+                startActivity(intent);
+                getActivity().finishAffinity();
+            }
+        });
 
         }
 

@@ -1,0 +1,23 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/app_bar"
+        style="@style/Widget.Shrine.Toolbar"
+        app:title="Files"
+        app:navigationIcon="@drawable/back"
+        ></android.support.v7.widget.Toolbar>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_below="@+id/app_bar"
+        android:id="@+id/recycler_view"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+
+
+</RelativeLayout>

@@ -149,8 +149,6 @@
             <android.support.design.card.MaterialCardView
                 android:background="@drawable/profile"
                 android:layout_width="match_parent"
-
-
                 app:cardUseCompatPadding="true"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="0dp"

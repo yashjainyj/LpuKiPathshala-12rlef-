@@ -60,7 +60,8 @@
             android:layout_width="match_parent"
             android:id="@+id/code"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:inputType="textCapCharacters"
+            android:textAllCaps="true"
             android:maxLines="1" />
     </android.support.design.widget.TextInputLayout>
 
@@ -83,5 +84,16 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="30dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:paddingBottom="10dp"
+        android:id="@+id/recycler_view"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/download"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

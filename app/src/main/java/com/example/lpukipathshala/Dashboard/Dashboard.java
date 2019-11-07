@@ -40,4 +40,11 @@ public class Dashboard extends AppCompatActivity implements NavigationHost {
 
         transaction.commit();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+        finish();
+    }
 }

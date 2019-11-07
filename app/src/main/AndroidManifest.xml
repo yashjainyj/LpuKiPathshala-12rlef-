@@ -51,6 +51,8 @@
         <activity android:name=".quoraa.answercmainclass" />
         <activity android:name=".Equipments.Add_Equipment" />
         <activity android:name=".quoraa.answermoreup" />
+        <activity android:name=".StudyMaterial.Show_Files"></activity>
+        <activity android:name=".StudyMaterial.Upload_Files"></activity>
         <activity android:name=".quoraa.Uploadquestion" />
         <activity
             android:name=".Dashboard.Dashboard"

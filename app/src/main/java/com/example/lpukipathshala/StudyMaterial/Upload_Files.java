@@ -9,18 +9,24 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.button.MaterialButton;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lpukipathshala.Dashboard.Dashboard;
 import com.example.lpukipathshala.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,7 +34,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
@@ -38,23 +46,47 @@ import java.util.regex.Pattern;
 
 public class Upload_Files extends AppCompatActivity {
     TextInputEditText branch,code;
+    TextView filename,label,percentage;
     String selected_branch,Selected_Degree;
     boolean selectebranch[] = new boolean[9];
     private StorageReference storageReference;
     DatabaseReference databaseReference;
     Button upload;
-    ProgressDialog progressDialog;
+    MaterialButton cancel;
+    StorageTask storageTask;
+    RelativeLayout relativeLayout;
+    ProgressBar progressDialog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.study_m_upload_files);
+        setUpToolbar();
         upload=findViewById(R.id.download);
         upload.setText("Upload File");
         branch = findViewById(R.id.branch);
         code = findViewById(R.id.code);
-        progressDialog = new ProgressDialog(this);
+        filename = findViewById(R.id.fileuploadname);
+        label = findViewById(R.id.label);
+        relativeLayout = findViewById(R.id.relative);
+        percentage = findViewById(R.id.percentage);
+        cancel = findViewById(R.id.cancel);
+        label.setText("");
+        percentage.setText("");
+        filename.setText("");
+
+        storageReference = FirebaseStorage.getInstance().getReference();
+        cancel.setOnClickListener(v->{
+            storageTask.cancel();
+            progressDialog.setProgress(0);
+            label.setText("");
+            percentage.setText("");
+            filename.setText("");
+            relativeLayout.setVisibility(View.GONE);
+        });
+        progressDialog = findViewById(R.id.progress_horizontal);
+        progressDialog.setProgress(0);
         branch.setOnClickListener(v -> setBranch());
-        storageReference= FirebaseStorage.getInstance().getReference();
+
         databaseReference = FirebaseDatabase.getInstance().getReference();
         upload.setOnClickListener(v -> {
             new MaterialFilePicker()
@@ -62,6 +94,20 @@ public class Upload_Files extends AppCompatActivity {
                     .withRequestCode(1)
                     .withFilter(Pattern.compile(".*\\.zip$"))
                     .start();
+        });
+    }
+    public  void setUpToolbar() {
+        Toolbar toolbar = findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Upload_Files.this, StudyMaterial_Main.class);
+                startActivity(intent);
+                finish();
+            }
         });
     }
     @Override
@@ -72,19 +118,29 @@ public class Upload_Files extends AppCompatActivity {
             Uri uri = Uri.fromFile(new File(filePath));
             if(selected_branch!=null && !code.getText().toString().equalsIgnoreCase(""))
             {
-                progressDialog.setMessage("Please wait a while......");
-                progressDialog.show();
-                StorageReference d = storageReference.child("Study Material/"+selected_branch+"/" +code.getText().toString());
+                relativeLayout.setVisibility(View.VISIBLE);
+                StorageReference d = storageReference.child("Study Material/"+selected_branch+"/" +code.getText().toString()+".zip");
                 d.putFile(uri).addOnSuccessListener(taskSnapshot -> {
                     Task<Uri> uri1 = taskSnapshot.getStorage().getDownloadUrl();
-                    while (!uri1.isComplete());
+                   while (!uri1.isComplete()){ };
                     databaseReference = FirebaseDatabase.getInstance().getReference("StudyMaterial").child(selected_branch).child(code.getText().toString());
                     FileDownload_URL fileDownload_url = new FileDownload_URL(uri1.getResult().toString());
                     databaseReference.setValue(fileDownload_url);
+                    relativeLayout.setVisibility(View.GONE);
                     Toast.makeText(Upload_Files.this, "uploaded succeessfully", Toast.LENGTH_SHORT).show();
-                    progressDialog.cancel();
                 }).addOnFailureListener(e -> {
                     Log.i("Fail", "onActivityResult: " + e);
+                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                        double percentage1 = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                        progressDialog.setProgress((int) percentage1);
+                        filename.setText(code.getText().toString());
+                        String progrss = taskSnapshot.getBytesTransferred()/1024+"KB / "+taskSnapshot.getTotalByteCount()/1024+"KB";
+                        label.setText(progrss);
+                        percentage.setText((int)percentage1+"%");
+                        storageTask = taskSnapshot.getTask();
+                    }
                 });
 
             }

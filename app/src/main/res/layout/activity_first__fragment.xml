@@ -54,7 +54,6 @@
         app:cornerRadius="20dp"
         android:backgroundTint="@color/blue"
         android:text="Auto Fill with Truecaller"
-
         android:layout_below="@+id/signin"
         />
 

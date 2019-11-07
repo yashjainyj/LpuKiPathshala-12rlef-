@@ -72,7 +72,7 @@ public class Chat_Dsiplay extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Chat_Dsiplay.this, Product_Sell.class);
+                Intent intent = new Intent(Chat_Dsiplay.this, AccountDetails.class);
                 startActivity(intent);
                 finish();
             }
@@ -235,7 +235,7 @@ public class Chat_Dsiplay extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(Chat_Dsiplay.this, Product_Sell.class);
+        Intent intent = new Intent(Chat_Dsiplay.this, AccountDetails.class);
         startActivity(intent);
         finish();
     }
