@@ -37,7 +37,7 @@
       <de.hdodenhof.circleimageview.CircleImageView
           android:layout_width="125dp"
           android:layout_height="125dp"
-          android:src="@drawable/profilepic"
+          android:src="@drawable/camera"
           tools:layout_editor_absoluteY="168dp"
           tools:layout_editor_absoluteX="142dp"
           app:civ_border_width="2dp"
