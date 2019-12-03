@@ -9,7 +9,11 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.lpukipathshala.R;
 import com.example.lpukipathshala.quoraa.Queansweradpter;
@@ -43,6 +47,8 @@ public class Video_main_class extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main1);
 
+        toolbar = findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
 
         /*list.add(new Demoquecontent("Maths","What is Addition in maths?",R.drawable.ic_local_post_office_black_24dp,
                 R.drawable.queuser,"Prem Narayan","8sep2019",
@@ -132,6 +138,60 @@ public class Video_main_class extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_option, menu);
 
+        MenuItem searchItem = menu.findItem(R.id.search);
+        android.widget.SearchView searchView = (android.widget.SearchView) searchItem.getActionView();
 
+        searchView.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                getSearchedData(query);
+               // Toast.makeText(Video_main_class.this, query, Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+               // Toast.makeText(Video_main_class.this, newText, Toast.LENGTH_SHORT).show();
+                getSearchedData(newText);
+                return true;
+            }
+        });
+        return true;
+    }
+
+    private void getSearchedData(String query) {
+        list = new ArrayList<>();
+        list.clear();
+        collectionReference = firebaseFirestore.collection("VideoQuestions");
+        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                list.clear();
+                for(QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots)
+                {
+                    mQuestionGetSet mQuestionGetSet  = queryDocumentSnapshot.toObject(com.example.lpukipathshala.quoraa.mQuestionGetSet.class);
+                    String q_id = queryDocumentSnapshot.getId();
+                    if(mQuestionGetSet.getQtitle().toLowerCase().contains(query.toLowerCase()))
+                    list.add(new mQuestionGetSet(mQuestionGetSet.getUid(),mQuestionGetSet.getQtitle(),mQuestionGetSet.getQtype(),mQuestionGetSet.getQimgurl(),mQuestionGetSet.getQdate(),q_id));
+                }
+                videoQuestionAdapter queansweradpter = new videoQuestionAdapter(Video_main_class.this,list);
+                recyclerViewque.setLayoutManager(new GridLayoutManager(Video_main_class.this,1));
+                recyclerViewque.setAdapter(queansweradpter);
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+                recyclerViewque.setVisibility(View.VISIBLE);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+    }
 }
