@@ -52,10 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         toolbar = findViewById(R.id.app_bar);
-
-
-
-
+        setSupportActionBar(toolbar);
         recyclerViewque = findViewById(R.id.recycler_bloquery);
         bottomNavigationView = findViewById(R.id.bottomnavque);
         shimmerFrameLayout = findViewById(R.id.shimmer);
@@ -114,7 +111,64 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_option, menu);
 
+        MenuItem searchItem = menu.findItem(R.id.search);
+        android.widget.SearchView searchView = (android.widget.SearchView) searchItem.getActionView();
 
+        searchView.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                getSearchedData(query);
+               // Toast.makeText(MainActivity.this, query, Toast.LENGTH_SHORT).show();
+                return true;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //Toast.makeText(MainActivity.this, newText, Toast.LENGTH_SHORT).show();
+                getSearchedData(newText);
+                return true;
+            }
+        });
+        return true;
+    }
+
+    private void getSearchedData(String query) {
+        collectionReference = firebaseFirestore.collection("Questions");
+        list = new ArrayList<>();
+        collectionReference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                for(QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots)
+                {
+                    mQuestionGetSet mQuestionGetSet  = queryDocumentSnapshot.toObject(com.example.lpukipathshala.quoraa.mQuestionGetSet.class);
+                    String q_id = queryDocumentSnapshot.getId();
+                    if(mQuestionGetSet.getQtitle().toLowerCase().contains(query.toLowerCase()))
+                    list.add(new mQuestionGetSet(mQuestionGetSet.getUid(),mQuestionGetSet.getQtitle(),mQuestionGetSet.getQtype(),mQuestionGetSet.getQimgurl(),mQuestionGetSet.getQdate(),q_id));
+                }
+                Queansweradpter queansweradpter = new Queansweradpter(MainActivity.this,list);
+                recyclerViewque.setLayoutManager(new GridLayoutManager(MainActivity.this,1));
+                recyclerViewque.setAdapter(queansweradpter);
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
+                recyclerViewque.setVisibility(View.VISIBLE);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
 }

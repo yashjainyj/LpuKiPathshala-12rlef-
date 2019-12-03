@@ -13,7 +13,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +26,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.lpukipathshala.Dashboard.Dashboard;
@@ -966,7 +966,7 @@ public class EquipmentGrid extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         menuInflater.inflate(R.menu.menu_option, menu);
         MenuItem search = menu.findItem(R.id.search);
-        final android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView) search.getActionView();
+        final android.widget.SearchView searchView = (android.widget.SearchView) search.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

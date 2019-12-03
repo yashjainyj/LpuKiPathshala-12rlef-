@@ -68,8 +68,7 @@ public class answercmainclass extends AppCompatActivity {
         Intent intent = getIntent();
       q_id= intent.getStringExtra("q_id");
       storageReference = FirebaseStorage.getInstance().getReference();
-     //   Toast.makeText(this, q_id, Toast.LENGTH_SHORT).show();
-//
+//   Toast.makeText(this, q_id, Toast.LENGTH_SHORT).show();
 //        list1 = new ArrayList<>();
 //        list1.add(new com.example.lpukipathshala.quoraa.answercontent("R.drawable.imageq",""));
 //        list1.add(new com.example.lpukipathshala.quoraa.answercontent("R.drawable.imageq","Answer"));

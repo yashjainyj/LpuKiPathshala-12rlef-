@@ -6,11 +6,6 @@
         android:icon="@drawable/search"
         android:title="Search"
         app:showAsAction="always"
-        app:actionViewClass="android.support.v7.widget.SearchView" />
-    <item
-        android:id="@+id/filter"
-        android:icon="@drawable/filter"
-        android:title="Option"
-        android:visible="false"
-        app:showAsAction="always" />
+        app:actionViewClass="android.widget.SearchView" />
+
 </menu>

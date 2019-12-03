@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Shrine"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".videoblog.Video_main_class"></activity>
+        <activity android:name=".videoblog.Video_main_class"
+            android:theme="@style/Theme.Shrine"></activity>
         <activity android:name=".videoblog.Uploadvideoquestion"></activity>
         <activity android:name=".videoblog.answerVideoMain">
 
@@ -48,7 +49,8 @@
             android:name=".Myaccount.OurProduct.Product_Sell"
             android:screenOrientation="portrait" />
         <activity android:name=".Category.Category_Main" />
-        <activity android:name=".quoraa.MainActivity" />
+        <activity android:name=".quoraa.MainActivity"
+            android:theme="@style/Theme.Shrine"/>
         <activity android:name=".StudyMaterial.StudyMaterial_Main"></activity>
         <activity android:name=".quoraa.answercmainclass" />
         <activity android:name=".Equipments.Add_Equipment" />
