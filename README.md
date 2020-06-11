@@ -16,6 +16,11 @@ It can also be looked at as a platform which blooms a writer in you and imparts 
 
 You can discuss with awesome fellow Quorans here and learn about different perspectives , experiences, and lessons and develop your personality accordingly. Even if you do any of the mentioned tasks here, it will definitely impart you something. 
   
+  ![image](https://drive.google.com/uc?export=view&id=12O4hIGMKvuqYNdkbT3WZzFNMGbVtUyfy)
+  ![image](https://drive.google.com/uc?export=view&id=12QDHdJrkgq_DQZlqE3F4SX4zrHpkU3Ff)
+  ![image](https://drive.google.com/uc?export=view&id=11rcleNQJfGALWne7BWnPuze6i8Zbup-u)
+  ![image](https://drive.google.com/uc?export=view&id=11iXE0CAXM-gB3s1rOuod4lMTpthUgn-b)
+    ![image](https://drive.google.com/uc?export=view&id=11zFePOAzoZDtrW2dPQ1FbeG-nzf10WrK)
+    ![image](https://drive.google.com/uc?export=view&id=12NLJFnF2aC0EVU-MRFz09FZ6P0wmTEQD)
   
-  
-  <img src="https://drive.google.com/file/d/12O4hIGMKvuqYNdkbT3WZzFNMGbVtUyfy/view?usp=sharing">
+ 
