@@ -18,24 +18,12 @@ You can discuss with awesome fellow Quorans here and learn about different persp
   
   
   
-<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/1.png" width = "220" > 
-<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/2.png" width = "220" > 
-<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/3.png" width = "220" > 
-<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/4.png" width = "220" > 
-<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/5.png" width = "220" > 
-<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/6.png" width = "220" > 
-<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/7.png" width = "220" > 
-<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/8.png" width = "220" > 
-<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/9.png" width = "220" > 
-<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/10.png" width = "220" > 
-<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/11.png" width = "220" > 
-<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/12.png" width = "220" > 
-<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/13.png" width = "220" > 
-<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/14.png" width = "220" > 
-<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/15.png" width = "220" > 
-<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/16.png" width = "220" > 
-<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/17.png" width = "220" > 
-<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/18.png" width = "220" > 
+<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/1.png" width = "220" > <img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/2.png" width = "220" > <img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/3.png" width = "220" > 
+<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/4.png" width = "220" > <img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/5.png" width = "220" > <img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/6.png" width = "220" > 
+<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/7.png" width = "220" > <img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/8.png" width = "220" > <img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/9.png" width = "220" > 
+<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/10.png" width = "220" > <img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/11.png" width = "220" > <img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/12.png" width = "220" > 
+<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/13.png" width = "220" > <img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/14.png" width = "220" > <img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/15.png" width = "220" > 
+<img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/16.png" width = "220" > <img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/17.png" width = "220" > <img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/18.png" width = "220" > 
 <img src = "https://github.com/yashjainyj/LpuKiPathshala-12rlef-/blob/master/images/19.png" width = "220" > 
 
 ## Getting Started
